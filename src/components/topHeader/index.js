@@ -1,14 +1,16 @@
-import { Box, Heading } from "@chakra-ui/react";
+import { Box, Heading, Flex, Spacer, Text } from "@chakra-ui/react";
+import { Bell } from "phosphor-react";
+
 const TopHeader = () => {
   return (
-    <Box w="100%" h="90px" bg="#FFF">
-      <Heading as="h3">
-        Welcome, Admin
-      </Heading>
-      <Box>
-         
-      </Box>
-    </Box>
+    <Flex w="100%" h="90px" bg="#FFF" align="center">
+      <Text fontSize="xl">Welcome, Admin</Text>
+      <Spacer />
+      <Flex align="center">
+        <Bell size={24} />
+        <Box ml="20px" borderRadius="full" h="50px" w="50px" bg="#E0E0E0"></Box>
+      </Flex>
+    </Flex>
   );
 };
 
