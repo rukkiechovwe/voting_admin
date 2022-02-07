@@ -4,9 +4,21 @@ import RecentVoteCard from "../../common/recentVoteCard";
 
 const RecentVotes = () => {
   return (
-    <Box w="390px" border="1px" borderColor="gray.200" borderRadius="10px">
+    <Box
+      sx={{
+        width: "100%",
+        marginLeft:"0px",
+        "@media screen and (min-width: 880px)": {
+          width: " 320px",
+          marginLeft:"20px"
+        },
+      }}
+      border="1px"
+      borderColor="gray.200"
+      borderRadius="10px"
+    >
       <Box w="100%" bg="#F2F2F2" p="20px">
-        <Text fontSize="xl">Recent Votes</Text>
+        <Text fontSize="1.1rem">Recent Votes</Text>
       </Box>
       <Box px="15px">
         <RecentVoteCard name=" Ufuoma Oghenechovwe" />

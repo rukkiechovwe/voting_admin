@@ -26,6 +26,7 @@ body {
   margin: 0;
   font-family: "GTWalsheimProRegular", sans-serif !important;
   font-weight: 400;
+  font-size: 14px;
   letter-spacing: 0.2px;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -41,10 +42,21 @@ h6 {
 }
 p,
 ul,
-li {
+li,
+th,
+tr,
+td,
+thead {
   color: #4f4f4f;
 }
-
+td,
+tr,
+th {
+  text-transform: capitalize;
+  font-weight: 400;
+  font-size: 13px;
+  font-family: "GTWalsheimProRegular", sans-serif;
+}
 /* code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
