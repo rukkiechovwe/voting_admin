@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React from "react";
 import TopHeader from "../../components/topHeader";
 import {
   Box,
@@ -18,7 +18,6 @@ function Election() {
 
   return (
     <Box
-      px="20px"
       sx={{
         width: "100% ",
         "@media screen and (min-width: 880px)": {
@@ -27,29 +26,36 @@ function Election() {
       }}
     >
       <TopHeader />
-      <Flex justifyContent="space-between">
-        <Box>
-          <Heading fontSize="28px" fontWeight="500">
-            2021 Election
-          </Heading>
-          <Text>Election starts</Text>
-        </Box>
-        <Box onClick={onOpen}>
-          <ButtonGroup size="sm" isAttached variant="outline">
-            <IconButton
-              aria-label="Create Poll"
-              p="10px"
-              height=" 45px"
-              width="45px"
-              borderRadius="30px"
-              icon={<Plus size={32} />}
-            />
-          </ButtonGroup>
-        </Box>
-      </Flex>
-      <Candidates position="President" />
-      <Candidates position="Vice-President" />
-      <Candidates position="Secretary" />
+      <Box p="20px">
+        <Flex mb="16px" justifyContent="space-between">
+          <Box>
+            <Heading fontSize="28px" fontWeight="500">
+              2021 Election
+            </Heading>
+            <Text>Election starts on the 25th of March, 8:00am</Text>
+          </Box>
+          <Box onClick={onOpen}>
+            <ButtonGroup size="sm" isAttached variant="outline">
+              <IconButton
+                aria-label="Create Poll"
+                p="8px"
+                height=" 45px"
+                width="45px"
+                borderRadius="30px"
+                bg="brand.primary"
+                color="brand.white"
+                border="none"
+                boxShadow=" 0px 3px 10px rgba(200, 200, 200, 0.17)"
+                icon={<Plus size={50} weight="bold" />}
+              />
+            </ButtonGroup>
+          </Box>
+        </Flex>
+
+        <Candidates position="President" />
+        <Candidates position="Vice-President" />
+        <Candidates position="Secretary" />
+      </Box>
 
       <CreatePoll isOpen={isOpen} onOpen={onOpen} onClose={onClose} />
     </Box>

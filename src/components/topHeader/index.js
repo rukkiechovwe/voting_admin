@@ -3,7 +3,7 @@ import { Bell } from "phosphor-react";
 
 const TopHeader = () => {
   return (
-    <Flex w="100%" h="90px" bg="#FFF" align="center">
+    <Flex w="100%" h="90px" bg="#FFF" align="center" px="20px">
       <Text fontSize="xl">Welcome, Admin</Text>
       <Spacer />
       <Flex align="center">

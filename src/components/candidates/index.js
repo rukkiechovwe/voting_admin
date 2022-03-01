@@ -1,12 +1,15 @@
-import { Box, Flex, Heading, Text } from "@chakra-ui/react";
+import { Box, Flex, Text } from "@chakra-ui/react";
 
 import CandidateCard from "../../common/candidateCard";
 
 const Candidates = ({position}) => {
   return (
-    <Box mb="2rem">
-      <Text py="10px" fontSize={22} fontWeight={700}>
-        <i>Position: {position}</i>
+    <Box
+      mb="2rem"
+      
+    >
+      <Text  py="10px" fontSize={18} fontWeight={500}>
+      Position: {position}
       </Text>
       <Flex
         sx={{

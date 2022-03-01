@@ -1,7 +1,9 @@
 import { Route, Routes } from "react-router-dom";
+import AdminPage from "../pages/admin";
 import Login from "../pages/authentication/login";
 import Election from "../pages/election";
 import Home from "../pages/home";
+import StudentDetail from "../pages/studentDetail";
 import StudentList from "../pages/students";
 
 export default () => {
@@ -13,6 +15,8 @@ export default () => {
       <Route path="/create-poll" element={<Home />} />
       <Route path="/account" element={<Home />} />
       <Route path="/login" element={<Login />} />
+      <Route path="/admin" element={<AdminPage />} />
+      <Route path="/student-detail" element={<StudentDetail />} />
     </Routes>
   );
 };

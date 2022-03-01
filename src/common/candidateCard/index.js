@@ -3,7 +3,8 @@ import { Box, Flex, Heading, Text } from "@chakra-ui/react";
 const CandidateCard = () => {
   return (
     <Flex
-      bg="#F2F2F2"
+      bg="brand.white"
+      boxShadow=" 0px 3px 10px rgba(200, 200, 200, 0.17)"
       borderRadius="10px"
       mr="16px"
       mb="16px"
@@ -26,10 +27,18 @@ const CandidateCard = () => {
           width: "calc(100% - 70px)",
         }}
       >
-        <Heading fontSize="22px" fontWeight="500">
+        <Heading fontSize="20px" fontWeight="500">
           Ejikeme Charles Bernard
         </Heading>
-        <Text rounded="md" fontSize="14px" mt="5px" py="8px" px="20px" bg="#E0E0E0">
+        <Text
+          rounded="md"
+          fontSize="14px"
+          bg="brand.primary"
+          color="brand.white"
+          mt="10px"
+          py="5px"
+          px="15px"
+        >
           20 Votes
         </Text>
       </Flex>

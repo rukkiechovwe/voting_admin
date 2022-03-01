@@ -9,7 +9,6 @@ import VotingOverview from "../../components/votingOverview";
 function Home() {
   return (
     <Box
-      px="20px"
       sx={{
         width: "100% ",
         "@media screen and (min-width: 880px)": {
@@ -17,8 +16,10 @@ function Home() {
         },
       }}
     >
-      <TopHeader />
+      <TopHeader  />
       <Flex
+        px="20px"
+        py="20px"
         sx={{
           flexDirection: "column",
           "@media screen and (min-width: 880px)": {

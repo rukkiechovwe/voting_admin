@@ -30,6 +30,7 @@ body {
   letter-spacing: 0.2px;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background: #f6f1ff !important;
 }
 h1,
 h2,
@@ -56,6 +57,30 @@ th {
   font-weight: 400;
   font-size: 13px;
   font-family: "GTWalsheimProRegular", sans-serif;
+}
+a {
+  text-decoration: none !important;
+  color: #703bda;
+}
+input,
+button {
+  outline: none !important;
+  outline-offset: 0 !important;
+}
+input:hover,
+input:focus {
+  color: #222 !important;
+  outline: none !important;
+  border: 1p solid #703bda;
+  box-shadow: none !important;
+}
+button:hover,
+button:focus {
+  background: #6837ca9e !important;
+  color: #fff !important;
+  outline: none !important;
+  outline-offset: 0 !important;
+  box-shadow: none !important;
 }
 /* code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",

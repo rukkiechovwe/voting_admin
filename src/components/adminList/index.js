@@ -1,8 +1,26 @@
-import { Table, Thead, Tbody, Tr, Td, Box, Text, Link } from "@chakra-ui/react";
+import {
+  Table,
+  Thead,
+  Tbody,
+  Tr,
+  Td,
+  Box,
+  Text,
+  Link,
+  Flex,
+  ButtonGroup,
+  IconButton,
+  useDisclosure,
+} from "@chakra-ui/react";
+
+import { Plus } from "phosphor-react";
 import { Link as RL } from "react-router-dom";
 import TableHead from "../../common/tableHead";
+import { CreateAdmin } from "../createAdmin";
 
-const Students = ({ fullPage, title }) => {
+const Admin = () => {
+  const { isOpen, onOpen, onClose } = useDisclosure();
+
   return (
     <Box
       bg="brand.white"
@@ -11,25 +29,36 @@ const Students = ({ fullPage, title }) => {
       mb="20px"
       boxShadow=" 0px 3px 10px rgba(200, 200, 200, 0.17)"
     >
-      <Box
+      <Flex
         w="100%"
         p="20px"
         borderBottom="1px solid"
         borderColor="brand.borderColor"
+        justify="space-between"
+        align="center"
       >
         <Text fontSize="1.1rem" color="Background.black">
-          {title}
+          Manage Admin
         </Text>
-      </Box>
+        <ButtonGroup size="sm" isAttached variant="outline" onClick={onOpen}>
+          <IconButton
+            aria-label="Create Poll"
+            p="8px"
+            height=" 35px"
+            width="35px"
+            borderRadius="20px"
+            bg="brand.primary"
+            color="brand.white"
+            border="none"
+            icon={<Plus size={50} weight="bold" />}
+          />
+        </ButtonGroup>
+      </Flex>
       <Table variant="simple">
         <Thead>
           <Tr>
             <TableHead text="Name" />
-            <TableHead text="Matriculation Number" />
-            <TableHead text="Student Email" />
-            {fullPage && <TableHead text="Level" />}
-            {fullPage && <TableHead text="Eligible" />}
-            {/* <TableHead /> */}
+            <TableHead text="email" />
           </Tr>
         </Thead>
         <Tbody>
@@ -45,27 +74,18 @@ const Students = ({ fullPage, title }) => {
               color="#4f4f4f"
               width=" 100%"
               display=" contents"
-              to="/student-detail"
+              to="/"
             >
               <Td borderBottom="none">Emily Rose</Td>
-              {/* <Td>Rose</Td> */}
-              <Td borderBottom="none">PSC1707540</Td>
-              <Td borderBottom="none" sx={{ "word-wrap": " anywhere" }}>
-                emily.rose@psc.uniben.edu
-              </Td>
-              {fullPage && <Td borderBottom="none">400</Td>}
-              {fullPage && <Td borderBottom="none">No</Td>}
-              {/* <Td borderBottom="none">
-              <Link color="#4f4f4f" to="/">
-                <Eye size={20} />
-              </Link>
-            </Td> */}
+              <Td borderBottom="none">admin@gmail.com</Td>
             </Link>
           </Tr>
         </Tbody>
       </Table>
+
+      <CreateAdmin isOpen={isOpen} onOpen={onOpen} onClose={onClose} />
     </Box>
   );
 };
 
-export default Students;
+export default Admin;

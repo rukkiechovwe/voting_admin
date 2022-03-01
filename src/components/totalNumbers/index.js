@@ -3,7 +3,7 @@ import { Box, Flex, Text, Heading } from "@chakra-ui/react";
 const TotalNumbers = () => {
   const Card = ({ title, number, last }) => {
     return last ? (
-      <Box w="33.333%" pl="40px">
+      <Box w="33.333%" pl="40px" >
         <Text fontSize="sm" color="brand.dark">
           {title}
         </Text>
@@ -24,6 +24,7 @@ const TotalNumbers = () => {
   };
   return (
     <Flex
+      bg="brand.white"
       w="100%"
       h="128px"
       borderRadius="10px"
@@ -31,7 +32,7 @@ const TotalNumbers = () => {
       alignItems="center"
       py="30px"
       mb="20px"
-      boxShadow=" 0px 3px 10px rgba(117, 117, 117, 0.17)"
+      boxShadow=" 0px 3px 10px rgba(200, 200, 200, 0.17)"
     >
       <Card title="Total Students" number="7,4576" />
       <Card title="Total Voters" number="576" />

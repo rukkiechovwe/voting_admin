@@ -1,4 +1,4 @@
-import { Box, Flex, Heading, Text } from "@chakra-ui/react";
+import {  Flex, Text } from "@chakra-ui/react";
 import VotingOverviewCard from "../../common/votingOverviewCard";
 
 const VotingOverview = () => {
@@ -16,12 +16,13 @@ const VotingOverview = () => {
   };
   return (
     <Flex
+      bg="brand.white"
       w="100%"
       borderRadius="10px"
       justify="space-between"
       p="15px"
       mb="20px"
-      boxShadow=" 0px 3px 10px rgba(117, 117, 117, 0.17)"
+      boxShadow=" 0px 3px 10px rgba(200, 200, 200, 0.17)"
     >
       <Card title="President" />
       <Card title="Vice-President" />

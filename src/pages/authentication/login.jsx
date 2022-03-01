@@ -46,10 +46,9 @@ function Login() {
             flexDirection="column"
             justifyContent="center"
             alignItems="center"
-            color="#BDBDBD"
             boxShadow=" 0px 0px 50px rgba(0, 0, 0, 0.05)"
           >
-            <Heading mb="30px" as="h1" textAlign="center">
+            <Heading mb="30px" as="h1" color="brand.primary" textAlign="center">
               LOGO
             </Heading>
 
@@ -69,7 +68,13 @@ function Login() {
             />
             <ErrorMessage type="password" />
 
-            <Button size="md" h="50px" w="470px" bg="#BDBDBD" color="#4F4F4F">
+            <Button
+              size="md"
+              h="50px"
+              w="470px"
+              bg="brand.primary"
+              color="brand.white"
+            >
               Login
             </Button>
           </Flex>

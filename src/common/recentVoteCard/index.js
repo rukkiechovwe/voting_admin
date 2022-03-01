@@ -10,16 +10,23 @@ const RecentVoteCard = ({ name }) => {
       borderBottom="1px"
       borderColor="gray.200"
     >
-      <Box borderRadius="full" h="40px" w="40px" bg="#E0E0E0" mr="15px"></Box>
+      <Box bg="brand.primary" borderRadius="full" h="40px" w="40px"></Box>
 
-      <Flex w="88%">
+      <Flex w="88%" align="center" pl="15px">
         <Box>
           <Text fontSize="14px">{name}</Text>
           <Text fontSize="12px">Just now</Text>
         </Box>
         <Spacer />
-        <Text rounded="md" fontSize="14px" py="7px" px="10px" bg="#E0E0E0">
-          Vote
+        <Text
+          bg="brand.primary"
+          rounded="md"
+          fontSize="11px"
+          color="brand.white"
+          py="4px"
+          px="7px"
+        >
+          Voted
         </Text>
       </Flex>
     </Flex>

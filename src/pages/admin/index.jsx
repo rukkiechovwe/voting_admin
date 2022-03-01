@@ -1,22 +1,24 @@
 import React from "react";
 import TopHeader from "../../components/topHeader";
 import { Box } from "@chakra-ui/react";
-import Students from "../../components/students";
+import Admin from "../../components/adminList";
 
-function StudentList() {
+function AdminPage() {
   return (
     <Box
       sx={{
-        width: "calc(100% - 200px)",
+        width: "100% ",
+        "@media screen and (min-width: 880px)": {
+          width: "calc(100% - 200px)",
+        },
       }}
     >
       <TopHeader />
       <Box p="20px">
-        <Students fullPage={true} title="Students" />
+        <Admin />
       </Box>
     </Box>
-    
   );
 }
 
-export default StudentList;
+export default AdminPage;

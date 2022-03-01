@@ -5,10 +5,17 @@ import {
   Input,
   InputRightElement,
   Button,
+  Text,
 } from "@chakra-ui/react";
 import { Password, EyeClosed, Eye } from "phosphor-react";
 
-export const PasswordInputField = ({ name, onChange, placeholder, type, color }) => {
+export const PasswordInputField = ({
+  name,
+  onChange,
+  placeholder,
+  type,
+  color,
+}) => {
   const [show, setShow] = useState(false);
   const handleClick = () => setShow(!show);
 
@@ -19,6 +26,7 @@ export const PasswordInputField = ({ name, onChange, placeholder, type, color })
         children={<Password size={20} />}
         my="5px"
         mx="10px"
+        color="rgb(189, 189, 189)"
       />
       <Input
         color={color}
@@ -54,12 +62,20 @@ export const PasswordInputField = ({ name, onChange, placeholder, type, color })
   );
 };
 
-export const InputField = ({ type, name, onChange, placeholder, icon, color }) => {
+export const InputField = ({
+  type,
+  name,
+  onChange,
+  placeholder,
+  icon,
+  color,
+}) => {
   return (
     <InputGroup mb="20px" w="100%">
       <InputLeftElement
         pointerEvents="none"
         children={icon}
+        color="rgb(189, 189, 189)"
         my="5px"
         mx="10px"
       />
@@ -80,27 +96,51 @@ export const InputField = ({ type, name, onChange, placeholder, icon, color }) =
   );
 };
 
-export const FileInputField = ({ type, name, onChange, placeholder, icon,color }) => {
+export const FileInputField = ({
+  type,
+  name,
+  onChange,
+  placeholder,
+  icon,
+  color,
+}) => {
   return (
-    <InputGroup mb="20px" w="100%">
+    <InputGroup
+      mb="20px"
+      w="100%"
+      borderRadius="0.375rem"
+      border="1px"
+      borderColor="#E0E0E0"
+      h="50px"
+    >
       <InputLeftElement
         pointerEvents="none"
         children={icon}
         my="5px"
-        mx="20px"
+        mx="9px"
       />
       <Input
-      color={color}
-        fontSize="14px"
-        borderColor="#E0E0E0"
-        border="1px"
+        color={color}
         py="10px"
+        h="100%"
+        w="100%"
         pl="65px"
-        h="50px"
+        cursor="pointer"
         type="file"
+        pos="absolute"
         name={name}
+        opacity={0}
         onChange={() => onChange}
       />
+      <Text
+        width="100%"
+        p="13px"
+        color="rgb(189, 189, 189)"
+        fontSize="14px"
+        ml="42px"
+      >
+        Select Candidate Image
+      </Text>
     </InputGroup>
   );
 };
