@@ -1,4 +1,5 @@
 import { Route, Routes } from "react-router-dom";
+import Account from "../pages/account";
 import AdminPage from "../pages/admin";
 import Login from "../pages/authentication/login";
 import Election from "../pages/election";
@@ -13,7 +14,7 @@ export default () => {
       <Route path="/students" element={<StudentList />} />
       <Route path="/election" element={<Election />} />
       <Route path="/create-poll" element={<Home />} />
-      <Route path="/account" element={<Home />} />
+      <Route path="/account" element={<Account />} />
       <Route path="/login" element={<Login />} />
       <Route path="/admin" element={<AdminPage />} />
       <Route path="/student-detail" element={<StudentDetail />} />

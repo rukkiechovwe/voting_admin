@@ -20,7 +20,7 @@ export const PasswordInputField = ({
   const handleClick = () => setShow(!show);
 
   return (
-    <InputGroup mb="80px" w="100%">
+    <InputGroup  w="100%">
       <InputLeftElement
         pointerEvents="none"
         children={<Password size={20} />}
