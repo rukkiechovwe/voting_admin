@@ -8,6 +8,7 @@ import {
   Text,
   Link,
   Flex,
+  Switch,
   ButtonGroup,
   IconButton,
   useDisclosure,
@@ -59,6 +60,7 @@ const Admin = () => {
           <Tr>
             <TableHead text="Name" />
             <TableHead text="email" />
+            <TableHead text="email" />
           </Tr>
         </Thead>
         <Tbody>
@@ -69,16 +71,11 @@ const Admin = () => {
               transition: "200ms all ease",
             }}
           >
-            <Link
-              as={RL}
-              color="#4f4f4f"
-              width=" 100%"
-              display=" contents"
-              to="/"
-            >
-              <Td borderBottom="none">Emily Rose</Td>
-              <Td borderBottom="none">admin@gmail.com</Td>
-            </Link>
+            <Td borderBottom="none">Emily Rose</Td>
+            <Td borderBottom="none">admin@gmail.com</Td>
+            <Td>
+              <Switch id="activate-admin" isChecked={true} />
+            </Td>
           </Tr>
         </Tbody>
       </Table>
