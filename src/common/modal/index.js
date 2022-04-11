@@ -29,7 +29,7 @@ export const ModalComponent = ({
           {footer && (
             <ModalFooter>
               <Button colorScheme="blue" mr={3}>
-                Create
+                Continue
               </Button>
             </ModalFooter>
           )}

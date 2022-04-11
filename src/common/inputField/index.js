@@ -130,7 +130,7 @@ export const FileInputField = ({
         pos="absolute"
         name={name}
         opacity={0}
-        onChange={() => onChange}
+        onChange={onChange}
       />
       <Text
         width="100%"
