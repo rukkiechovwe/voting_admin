@@ -50,7 +50,7 @@ const Students = ({ fullPage, title }) => {
               <Td borderBottom="none">Emily Rose</Td>
               {/* <Td>Rose</Td> */}
               <Td borderBottom="none">PSC1707540</Td>
-              <Td borderBottom="none" sx={{ "word-wrap": " anywhere" }}>
+              <Td borderBottom="none" sx={{ "wordWrap": " anywhere" }}>
                 emily.rose@psc.uniben.edu
               </Td>
               {fullPage && <Td borderBottom="none">400</Td>}

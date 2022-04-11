@@ -1,4 +1,4 @@
-import { Box, Heading, Flex, Spacer, Text } from "@chakra-ui/react";
+import { Box, Flex, Spacer, Text } from "@chakra-ui/react";
 import { Bell } from "phosphor-react";
 
 const TopHeader = () => {

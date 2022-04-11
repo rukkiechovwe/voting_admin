@@ -6,7 +6,6 @@ import {
   Td,
   Box,
   Text,
-  Link,
   Flex,
   Switch,
   ButtonGroup,
@@ -15,7 +14,7 @@ import {
 } from "@chakra-ui/react";
 
 import { Plus } from "phosphor-react";
-import { Link as RL } from "react-router-dom";
+// import { Link as RL } from "react-router-dom";
 import TableHead from "../../common/tableHead";
 import { CreateAdmin } from "../createAdmin";
 

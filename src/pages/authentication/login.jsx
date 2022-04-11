@@ -5,7 +5,6 @@ import {
   Heading,
   Button,
   Text,
-  FormErrorMessage,
 } from "@chakra-ui/react";
 import { EnvelopeSimple } from "phosphor-react";
 
@@ -14,13 +13,23 @@ import { ValidationRules } from "./validationRules";
 import { InputField, PasswordInputField } from "../../common/inputField";
 
 function Login() {
-  const { values, errors, loading, handleChange, handleSubmit } =
+  const { errors, loading, handleChange, handleSubmit } =
     useLoginForm(ValidationRules);
 
   const ErrorMessage = ({ type }) => {
     const errorMessage = errors[type];
     return errors[type] ? (
-      <FormErrorMessage>{errorMessage}</FormErrorMessage>
+      <p
+        style={{
+          color: "red",
+          marginTop: "-15px",
+          textAlign: "left",
+          alignSelf: "flex-start",
+          marginBottom: "20px",
+        }}
+      >
+        {errorMessage}
+      </p>
     ) : (
       <Text />
     );
@@ -51,6 +60,17 @@ function Login() {
             <Heading mb="30px" as="h1" color="brand.primary" textAlign="center">
               LOGO
             </Heading>
+            {errors && (
+              <p
+                style={{
+                  color: "red",
+                  textAlign: "center",
+                  marginBottom: "20px",
+                }}
+              >
+                {errors.authentication}
+              </p>
+            )}
 
             <InputField
               name="email"
@@ -63,7 +83,7 @@ function Login() {
             <PasswordInputField
               name="password"
               type="password"
-              onChange={handleChange}
+              onChange={(e) => handleChange(e)}
               placeholder="Password"
             />
             <ErrorMessage type="password" />
@@ -74,8 +94,9 @@ function Login() {
               w="470px"
               bg="brand.primary"
               color="brand.white"
+              onClick={(e) => handleSubmit(e)}
             >
-              Login
+              {loading ? "please wait..." : "Login"}
             </Button>
           </Flex>
         </form>

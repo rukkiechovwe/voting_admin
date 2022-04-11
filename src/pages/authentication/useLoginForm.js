@@ -1,30 +1,46 @@
 import { useState } from "react";
-// import { useHistory } from "react-router-dom";
-// import { getParamByName, notify } from "../../utils/helpers";
+import { useNavigate } from "react-router-dom";
+import { auth, signInUser } from "../../firebase";
 
 const useLoginForm = (validationRules) => {
-  const [values, setValues] = useState({}); //{email:"eeeee",password:eee""}
-  const [errors, setErrors] = useState({}); // {"email":"invalid"}
+  const [values, setValues] = useState({});
+  const [errors, setErrors] = useState({});
   const [loading, setLoading] = useState(false);
-//   const history = useHistory();
+  const navigate = useNavigate();
 
+  const signIn = (e, p) => {
+    signInUser(auth, e, p)
+      .then((userCredential) => {
+        const user = userCredential.user;
+        console.log(user);
+        localStorage.setItem("admin_id", user.uid);
+        navigate("../");
+      })
+      .catch((error) => {
+        console.log(error);
+        console.log(error.message);
+        setLoading(false);
+        setErrors({ authentication: error.message });
+      });
+  };
   const handleChange = (event) => {
     event.preventDefault();
     setValues((values) => ({
-      ...values, 
-      [event.target.name]: event.target.value
+      ...values,
+      [event.target.name]: event.target.value,
     }));
     setErrors((errors) => ({ ...errors, [event.target.name]: "" }));
   };
 
   const handleSubmit = (event) => {
     event.preventDefault();
+    setErrors({});
     if (Object.keys(validationRules(values)).length === 0) {
-      setErrors({});
       setLoading(true);
-      // const next = getParamByName("next") || "/dashboard";
+      signIn(values.email, values.password);
     } else {
       setErrors(validationRules(values));
+      console.log(errors);
     }
   };
 
