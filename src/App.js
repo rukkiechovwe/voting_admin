@@ -4,6 +4,7 @@ import { ChakraProvider, Flex } from "@chakra-ui/react";
 import Nav from "./components/nav";
 import Router from "./router";
 import { theme } from "./theme";
+import AdminContextProvider from "./context/adminContext";
 
 function App() {
   const [token, setToken] = useState(false);
@@ -19,18 +20,20 @@ function App() {
   }, [item]);
 
   return (
-    <ChakraProvider theme={theme}>
-      <Flex className="App">
-        {token ? (
-          <>
-            <Nav />
+    <AdminContextProvider>
+      <ChakraProvider theme={theme}>
+        <Flex className="App">
+          {token ? (
+            <>
+              <Nav />
+              <Router token={token} />
+            </>
+          ) : (
             <Router token={token} />
-          </>
-        ) : (
-          <Router token={token} />
-        )}
-      </Flex>
-    </ChakraProvider>
+          )}
+        </Flex>
+      </ChakraProvider>
+    </AdminContextProvider>
   );
 }
 

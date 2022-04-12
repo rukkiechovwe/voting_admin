@@ -29,7 +29,7 @@ export const PasswordInputField = ({
         color="rgb(189, 189, 189)"
       />
       <Input
-        color={color}
+        color="brand.black"
         fontSize="14px"
         borderColor="#E0E0E0"
         border="1px"
@@ -40,6 +40,8 @@ export const PasswordInputField = ({
         placeholder={placeholder}
         name={name}
         onChange={onChange}
+        autoComplete="off"
+        focusBorderColor="brand.primary"
       />
       <InputRightElement width="4.5rem" my="5px">
         <Button
@@ -80,7 +82,7 @@ export const InputField = ({
         mx="10px"
       />
       <Input
-        color={color}
+        color="brand.black"
         fontSize="14px"
         borderColor="#E0E0E0"
         border="1px"
@@ -91,6 +93,8 @@ export const InputField = ({
         placeholder={placeholder}
         name={name}
         onChange={onChange}
+        autoComplete="off"
+        focusBorderColor="brand.primary"
       />
     </InputGroup>
   );
@@ -120,7 +124,7 @@ export const FileInputField = ({
         mx="9px"
       />
       <Input
-        color={color}
+        color="brand.black"
         py="10px"
         h="100%"
         w="100%"
@@ -131,6 +135,8 @@ export const FileInputField = ({
         name={name}
         opacity={0}
         onChange={onChange}
+        autoComplete="off"
+        focusBorderColor="brand.primary"
       />
       <Text
         width="100%"

@@ -1,7 +1,7 @@
 import React from "react";
 import { Text, Flex, ButtonGroup, IconButton, Box } from "@chakra-ui/react";
-import { ModalComponent } from "../../common/modal.js/index.js";
-import { FileInputField, InputField } from "../../common/inputField/index.js";
+import { ModalComponent } from "../../common/modal";
+import { FileInputField, InputField } from "../../common/inputField";
 import { Ticket, User, Image, Plus } from "phosphor-react";
 
 export const CreatePoll = ({ isOpen, onOpen, onClose }) => {

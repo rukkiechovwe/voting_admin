@@ -19,11 +19,21 @@ export const ModalComponent = ({
 }) => {
   return (
     <>
-      <Modal isOpen={isOpen} onClose={onClose}>
+      <Modal isOpen={isOpen} onClose={onClose} isCentered>
         <ModalOverlay />
         <ModalContent>
           <ModalHeader>{header}</ModalHeader>
-          <ModalCloseButton />
+          <ModalCloseButton
+            size="lg"
+            _hover={{
+              background: "transparent !important",
+              color: "currentColor !important",
+            }}
+            _focus={{
+              background: "transparent !important",
+              color: "currentColor !important",
+            }}
+          />
           <ModalBody pb={6}>{children}</ModalBody>
 
           {footer && (

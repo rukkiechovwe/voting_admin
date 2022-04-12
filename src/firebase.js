@@ -4,7 +4,13 @@ import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
 } from "firebase/auth";
-import { getFirestore, collection, addDoc } from "firebase/firestore";
+import {
+  getFirestore,
+  collection,
+  addDoc,
+  getDoc,
+  getDocs,
+} from "firebase/firestore";
 
 const firebaseConfig = {
   apiKey: "AIzaSyD6rQi-CBqaO2Ox6SJ_DbyRtnoZkStza3Y",
@@ -23,3 +29,5 @@ export const createUser = createUserWithEmailAndPassword;
 export const signInUser = signInWithEmailAndPassword;
 export const firestore_collection = collection;
 export const firestore_addDoc = addDoc;
+export const firestore_getDoc = getDoc;
+export const firestore_getDocs = getDocs;

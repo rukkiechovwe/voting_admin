@@ -24,6 +24,8 @@ const useAdminForm = (validationRules) => {
             email: e,
             name: n,
             id: uc.user.uid,
+            active: true,
+            role: 2,
           }
         );
         console.log("Document written with ID: ", docRef.id);

@@ -1,30 +1,26 @@
 @font-face {
-  font-family: "GTWalsheimProBlack";
-  src: url(./assets/fonts/GTWalsheimPro-Black.ttf) format("truetype");
+  font-family: "BRFirmaBold";
+  src: url(./assets/fonts/BRFirma-Bold.ttf) format("truetype");
 }
 @font-face {
-  font-family: "GTWalsheimProBold";
-  src: url(./assets/fonts/GTWalsheimPro-Bold.ttf) format("truetype");
+  font-family: "BRFirmaLight";
+  src: url(./assets/fonts/BRFirma-Light.ttf) format("truetype");
 }
 @font-face {
-  font-family: "GTWalsheimProLight";
-  src: url(./assets/fonts/GTWalsheimPro-Light.ttf) format("truetype");
+  font-family: "BRFirmaRegular";
+  src: url(./assets/fonts/BRFirma-Regular.ttf) format("truetype");
 }
 @font-face {
-  font-family: "GTWalsheimProRegular";
-  src: url(./assets/fonts/GTWalsheimPro-Regular.ttf) format("truetype");
+  font-family: "BRFirma";
+  src: url(./assets/fonts/BRFirma-Medium.ttf) format("truetype");
 }
-@font-face {
-  font-family: "GTWalsheimProMedium";
-  src: url(./assets/fonts/GTWalsheimPro-Medium.ttf) format("truetype");
-}
-@font-face {
-  font-family: "GTWalsheimProThin";
-  src: url(./assets/fonts/GTWalsheimPro-Thin.ttf) format("truetype");
+* {
+  margin: 0;
+  padding: 0;
 }
 body {
   margin: 0;
-  font-family: "GTWalsheimProRegular", sans-serif !important;
+  font-family: "BRFirmaRegular", sans-serif !important;
   font-weight: 400;
   font-size: 14px;
   letter-spacing: 0.2px;
@@ -38,7 +34,7 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: "GTWalsheimProBold", sans-serif !important;
+  font-family: "BRFirmaBold", sans-serif !important;
   font-weight: 700;
 }
 p,
@@ -56,7 +52,7 @@ th {
   text-transform: capitalize;
   font-weight: 400;
   font-size: 13px;
-  font-family: "GTWalsheimProRegular", sans-serif;
+  font-family: "BRFirmaRegular", sans-serif;
 }
 a {
   text-decoration: none !important;

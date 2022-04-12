@@ -1,4 +1,4 @@
-import React from "react";
+import React,{useState} from "react";
 import { User } from "phosphor-react";
 import { Text, Button } from "@chakra-ui/react";
 import { ModalComponent } from "../../common/modal";
@@ -7,8 +7,9 @@ import useAdminForm from "./useAdminForm";
 import { ValidationRules } from "./validationRules";
 
 export const CreateAdmin = ({ isOpen, onOpen, onClose }) => {
-  const { errors, loading, handleChange, handleSubmit } =
+  const { values,errors, loading, handleChange, handleSubmit } =
     useAdminForm(ValidationRules);
+    
 
   const ErrorMessage = ({ type }) => {
     const errorMessage = errors[type];
@@ -36,9 +37,8 @@ export const CreateAdmin = ({ isOpen, onOpen, onClose }) => {
       header="Create Admin"
       footer={false}
     >
-      <form style={{ color: "#BDBDBD" }}>
+      <form style={{ color: "#BDBDBD" }} autoComplete="off">
         <InputField
-          color="#BDBDBD"
           name="admin_name"
           type="text"
           placeholder="Name"
@@ -47,7 +47,6 @@ export const CreateAdmin = ({ isOpen, onOpen, onClose }) => {
         />
         <ErrorMessage type="admin_name" />
         <InputField
-          color="#BDBDBD"
           name="admin_email"
           type="email"
           placeholder="Email"
@@ -56,11 +55,12 @@ export const CreateAdmin = ({ isOpen, onOpen, onClose }) => {
         />
         <ErrorMessage type="admin_email" />
         <PasswordInputField
-          color="#BDBDBD"
           name="admin_password"
           placeholder="Password"
           type="password"
-          onChange={(e) => handleChange(e)}
+          onChange={(e) => {
+            handleChange(e);
+          }}
         />
         <ErrorMessage type="admin_password" />
 

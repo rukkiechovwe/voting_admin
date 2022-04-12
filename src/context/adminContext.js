@@ -1,18 +1,29 @@
 import React, { useEffect, useState } from "react";
+import { db, firestore_collection, firestore_getDocs } from "../firebase";
 
 export const AdminContext = React.createContext();
 
 function AdminContextProvider({ children }) {
-  const [adminData, setAdminData] = useState({});
+  const [adminList, setAdminList] = useState([]);
+
+  const getAdminList = async () => {
+    const querySnapshot = await firestore_getDocs(
+      firestore_collection(db, "admin")
+    );
+    const data = [];
+    querySnapshot.forEach((doc) => {
+      data.push(doc.data());
+      // console.log(doc.data());
+    });
+    setAdminList(data);
+  };
 
   useEffect(() => {
-    const admin_id = localStorage.getItem("admin_id");
-    if (admin_id) {
-    }
+    getAdminList();
   }, []);
 
   return (
-    <AdminContext.Provider value={{ adminData }}>
+    <AdminContext.Provider value={{ adminList }}>
       {children}
     </AdminContext.Provider>
   );
