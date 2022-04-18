@@ -12,6 +12,9 @@ import {
   getDocs,
 } from "firebase/firestore";
 
+import { getStorage } from "firebase/storage";
+
+
 const firebaseConfig = {
   apiKey: "AIzaSyD6rQi-CBqaO2Ox6SJ_DbyRtnoZkStza3Y",
   authDomain: "voting-app-d2306.firebaseapp.com",
@@ -24,6 +27,8 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 export const auth = getAuth(app);
 export const db = getFirestore(app);
+export const storage = getStorage(app);
+
 
 export const createUser = createUserWithEmailAndPassword;
 export const signInUser = signInWithEmailAndPassword;
@@ -31,3 +36,4 @@ export const firestore_collection = collection;
 export const firestore_addDoc = addDoc;
 export const firestore_getDoc = getDoc;
 export const firestore_getDocs = getDocs;
+
