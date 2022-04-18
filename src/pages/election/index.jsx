@@ -32,7 +32,9 @@ function Election() {
             <Heading fontSize="28px" fontWeight="500">
               2021 Election
             </Heading>
-            <Text>Election starts on the 25th of March, 8:00am</Text>
+            <Text pt="10px" fontSize="14px">
+              Election starts on the 25th of March, 8:00am
+            </Text>
           </Box>
           <Box onClick={onOpen}>
             <ButtonGroup size="sm" isAttached variant="outline">

@@ -24,8 +24,9 @@ const CandidateCard = () => {
         flexDirection="column"
         alignItems="flex-start"
         sx={{
-          width: "calc(100% - 70px)",
+          width: "calc(100% - 90px)",
         }}
+        mr="20px"
       >
         <Heading fontSize="20px" fontWeight="500">
           Ejikeme Charles Bernard
@@ -35,14 +36,14 @@ const CandidateCard = () => {
           fontSize="14px"
           bg="brand.primary"
           color="brand.white"
-          mt="10px"
+          mt="25px"
           py="5px"
           px="15px"
         >
           20 Votes
         </Text>
       </Flex>
-      <Box ml="20px" borderRadius="full" h="70px" w="70px" bg="#E0E0E0"></Box>
+      <Box borderRadius="full" h="70px" w="70px" bg="#E0E0E0"></Box>
     </Flex>
   );
 };

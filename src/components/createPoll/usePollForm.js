@@ -1,47 +1,25 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import {
-  auth,
-  createUser,
   db,
   firestore_collection,
   firestore_addDoc,
 } from "../../firebase";
 
 const usePollForm = (validationRules) => {
+   const [loading, setLoading] = useState(false);
   const [values, setValues] = useState({});
   const [errors, setErrors] = useState({});
-  const [loading, setLoading] = useState(false);
+  const [candidates, setCandidates] = useState([
+    {
+      name: "",
+      image: null,
+    },
+  ]);
   const navigate = useNavigate();
-  const initialState = {
-    candidateList: [],
-  };
-  const candidateReducer = (state = initialState, action) => {
-    switch (action.type) {
-      case "get":
-        return action.payload;
-      case "add":
-        let addItems = state.items.concat(action.item);
-        return {
-          ...state,
-          items: addItems,
-        };
 
-      case "remove":
-        let removeItems = state.items.filter(
-          (item) => item.id !== action.item.id
-        );
-        return {
-          ...state,
-          items: removeItems,
-        };
-
-      default:
-        throw new Error("Something went wrong");
-    }
-  };
-
-  const createPoll = async () => {};
+  
+  //   const createPoll = async () => {};
 
   const handleChange = (event) => {
     event.preventDefault();
@@ -50,6 +28,15 @@ const usePollForm = (validationRules) => {
       [event.target.name]: event.target.value,
     }));
     setErrors((errors) => ({ ...errors, [event.target.name]: "" }));
+  };
+
+  const addCandidate = (event) => {
+    event.preventDefault();
+    const newCandidate = {
+      name: "",
+      image: null,
+    };
+    setCandidates((candidates) => [...candidates, newCandidate]);
   };
 
   const handleSubmit = (event) => {
@@ -66,6 +53,8 @@ const usePollForm = (validationRules) => {
   return {
     handleChange,
     handleSubmit,
+    addCandidate,
+    candidates,
     values,
     errors,
     loading,

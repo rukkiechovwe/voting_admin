@@ -16,10 +16,18 @@ export const ModalComponent = ({
   onOpen,
   onClose,
   footer,
+  size,
+  isCentered,
 }) => {
   return (
     <>
-      <Modal isOpen={isOpen} onClose={onClose} isCentered>
+      <Modal
+        isOpen={isOpen}
+        size={size}
+        onClose={onClose}
+        isCentered={isCentered}
+        scrollBehavior="outside"
+      >
         <ModalOverlay />
         <ModalContent>
           <ModalHeader>{header}</ModalHeader>

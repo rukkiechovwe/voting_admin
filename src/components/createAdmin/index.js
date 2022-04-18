@@ -36,6 +36,7 @@ export const CreateAdmin = ({ isOpen, onOpen, onClose }) => {
       onClose={onClose}
       header="Create Admin"
       footer={false}
+      isCentered={true}
     >
       <form style={{ color: "#BDBDBD" }} autoComplete="off">
         <InputField

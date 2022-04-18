@@ -6,12 +6,43 @@ import {
   ButtonGroup,
   IconButton,
   Box,
+  Heading,
 } from "@chakra-ui/react";
 import { ModalComponent } from "../../common/modal";
 import { FileInputField, InputField } from "../../common/inputField";
 import { Ticket, User, Image, Plus } from "phosphor-react";
+import usePollForm from "./usePollForm";
+import { ValidationRules } from "./validationRules";
 
 export const CreatePoll = ({ isOpen, onOpen, onClose }) => {
+  const {
+    values,
+    errors,
+    loading,
+    candidates,
+    handleChange,
+    addCandidate,
+    handleSubmit,
+  } = usePollForm(ValidationRules);
+
+  const ErrorMessage = ({ type }) => {
+    const errorMessage = errors[type];
+    return errors[type] ? (
+      <p
+        style={{
+          color: "red",
+          marginTop: "-15px",
+          textAlign: "left",
+          alignSelf: "flex-start",
+          marginBottom: "20px",
+        }}
+      >
+        {errorMessage}
+      </p>
+    ) : (
+      <Text />
+    );
+  };
   return (
     <ModalComponent
       color="#BDBDBD"
@@ -19,6 +50,8 @@ export const CreatePoll = ({ isOpen, onOpen, onClose }) => {
       onClose={onClose}
       header="Create Poll"
       footer={false}
+      size="lg"
+      isCentered={false}
     >
       <form style={{ color: "#BDBDBD" }}>
         <InputField
@@ -29,11 +62,14 @@ export const CreatePoll = ({ isOpen, onOpen, onClose }) => {
           icon={<Ticket size={20} />}
         />
         <Flex justifyContent="space-between" alignItems="center" mb="10px">
-          <Text>Candidates</Text>
+          <p></p>
+          {/* <Heading as="h6" color="brand.black" fontSize="lg">
+            Candidates
+          </Heading> */}
           <Box onClick={onOpen}>
-            <ButtonGroup size="sm" isAttached variant="outline">
+            {/* <ButtonGroup size="sm" isAttached variant="outline">
               <IconButton
-                aria-label="Create Poll"
+                aria-label="Add Candidate"
                 p="5px"
                 height=" 35px"
                 width="35px"
@@ -41,28 +77,45 @@ export const CreatePoll = ({ isOpen, onOpen, onClose }) => {
                 bg="brand.primary"
                 color="brand.white"
                 icon={<Plus size={32} />}
+                onClick={(e) => addCandidate(e)}
               />
-            </ButtonGroup>
+             
+            </ButtonGroup> */}
+            <Button
+              p="5px 10px"
+              size="sm"
+              bg="brand.primary"
+              color="brand.white"
+              onClick={(e) => addCandidate(e)}
+            >
+              Add Candidate
+            </Button>
           </Box>
         </Flex>
 
-        <div>
-          <InputField
-            color="#BDBDBD"
-            name="candidate_name"
-            type="text"
-            placeholder="Name of Candidate"
-            icon={<User size={20} />}
-          />
-          <Box pos="relative" top="0" left="0">
-            <FileInputField
+        {candidates.map((item, index) => (
+          <div key={index}>
+            <Text pb="10px">Candidate {index + 1}</Text>
+            <InputField
               color="#BDBDBD"
-              name="candidate_pic"
-              type="file"
-              icon={<Image size={20} />}
+              name="candidate_name"
+              type="text"
+              placeholder="Name of Candidate"
+              icon={<User size={20} />}
+              onChange={(e) => item.name}
             />
-          </Box>
-        </div>
+            <Box pos="relative" top="0" left="0">
+              <FileInputField
+                color="#BDBDBD"
+                name="candidate_pic"
+                type="file"
+                icon={<Image size={20} />}
+                onChange={(e) => item.image}
+              />
+            </Box>
+          </div>
+        ))}
+
         <Button
           size="md"
           h="50px"
@@ -70,7 +123,7 @@ export const CreatePoll = ({ isOpen, onOpen, onClose }) => {
           bg="brand.primary"
           color="brand.white"
         >
-          Create
+          Create Poll
         </Button>
       </form>
     </ModalComponent>
