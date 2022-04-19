@@ -1,13 +1,9 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import {
-  db,
-  firestore_collection,
-  firestore_addDoc,
-} from "../../firebase";
+import { db, firestore_collection, firestore_addDoc } from "../../firebase";
 
 const usePollForm = (validationRules) => {
-   const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(false);
   const [values, setValues] = useState({});
   const [errors, setErrors] = useState({});
   const [candidates, setCandidates] = useState([
@@ -18,16 +14,17 @@ const usePollForm = (validationRules) => {
   ]);
   const navigate = useNavigate();
 
-  
   //   const createPoll = async () => {};
 
-  const handleChange = (event) => {
+  const handleChange = (event, index) => {
     event.preventDefault();
-    setValues((values) => ({
-      ...values,
-      [event.target.name]: event.target.value,
-    }));
-    setErrors((errors) => ({ ...errors, [event.target.name]: "" }));
+    candidates[index].name = event.target.value;
+    console.log(candidates);
+  };
+  const handleImage = (event, index) => {
+    event.preventDefault();
+    candidates[index].image = event.target.files[0];
+    console.log(candidates);
   };
 
   const addCandidate = (event) => {
@@ -53,6 +50,7 @@ const usePollForm = (validationRules) => {
   return {
     handleChange,
     handleSubmit,
+    handleImage,
     addCandidate,
     candidates,
     values,

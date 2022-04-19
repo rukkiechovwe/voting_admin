@@ -64,14 +64,7 @@ export const PasswordInputField = ({
   );
 };
 
-export const InputField = ({
-  type,
-  name,
-  onChange,
-  placeholder,
-  icon,
-  color,
-}) => {
+export const InputField = ({ type, name, onChange, placeholder, icon }) => {
   return (
     <InputGroup mb="20px" w="100%">
       <InputLeftElement
@@ -100,14 +93,7 @@ export const InputField = ({
   );
 };
 
-export const FileInputField = ({
-  type,
-  name,
-  onChange,
-  placeholder,
-  icon,
-  color,
-}) => {
+export const FileInputField = ({ name, onChange, icon, file }) => {
   return (
     <InputGroup
       mb="20px"
@@ -145,7 +131,7 @@ export const FileInputField = ({
         fontSize="14px"
         ml="42px"
       >
-        Select Candidate Image
+        {file ? file.name : "Select Candidate Image"}
       </Text>
     </InputGroup>
   );

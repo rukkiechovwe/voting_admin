@@ -16,13 +16,13 @@ import { ValidationRules } from "./validationRules";
 
 export const CreatePoll = ({ isOpen, onOpen, onClose }) => {
   const {
-    values,
     errors,
     loading,
     candidates,
     handleChange,
     addCandidate,
     handleSubmit,
+    handleImage,
   } = usePollForm(ValidationRules);
 
   const ErrorMessage = ({ type }) => {
@@ -102,15 +102,20 @@ export const CreatePoll = ({ isOpen, onOpen, onClose }) => {
               type="text"
               placeholder="Name of Candidate"
               icon={<User size={20} />}
-              onChange={(e) => item.name}
+              onChange={(e) => {
+                handleChange(e, index);
+              }}
             />
             <Box pos="relative" top="0" left="0">
               <FileInputField
                 color="#BDBDBD"
                 name="candidate_pic"
                 type="file"
+                file={item.image ? item.image : null}
                 icon={<Image size={20} />}
-                onChange={(e) => item.image}
+                onChange={(e) => {
+                  handleImage(e, index);
+                }}
               />
             </Box>
           </div>
