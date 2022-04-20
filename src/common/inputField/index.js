@@ -64,7 +64,14 @@ export const PasswordInputField = ({
   );
 };
 
-export const InputField = ({ type, name, onChange, placeholder, icon }) => {
+export const InputField = ({
+  type,
+  name,
+  onChange,
+  placeholder,
+  icon,
+  ...props
+}) => {
   return (
     <InputGroup mb="20px" w="100%">
       <InputLeftElement
@@ -88,6 +95,7 @@ export const InputField = ({ type, name, onChange, placeholder, icon }) => {
         onChange={onChange}
         autoComplete="off"
         focusBorderColor="brand.primary"
+        {...props}
       />
     </InputGroup>
   );

@@ -1,13 +1,18 @@
 export const ValidationRules = (values) => {
   let errors = {};
-  if (!values.poll_name) {
-    errors.poll_name = "poll name is required";
+  if (!values.pollName) {
+    errors.pollName = "poll name is required";
   }
-  if (!values.candidate_name) {
-    errors.candidate_name = "candidate name is required";
+  return errors;
+};
+
+export const CandidateValidationRules = (values) => {
+  let errors = {};
+  if (!values.name) {
+    errors.name = "candidate name is required";
   }
-  if (!values.candidate_pic) {
-    errors.candidate_pic = "candidate image is required";
+  if (!values.image) {
+    errors.image = "candidate image is required";
   }
 
   return errors;

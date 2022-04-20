@@ -1,33 +1,30 @@
 import React from "react";
-import {
-  Text,
-  Flex,
-  Button,
-  ButtonGroup,
-  IconButton,
-  Box,
-  Heading,
-} from "@chakra-ui/react";
+import { Text, Flex, Button, Box } from "@chakra-ui/react";
 import { ModalComponent } from "../../common/modal";
 import { FileInputField, InputField } from "../../common/inputField";
-import { Ticket, User, Image, Plus } from "phosphor-react";
+import { Ticket, User, Image } from "phosphor-react";
 import usePollForm from "./usePollForm";
-import { ValidationRules } from "./validationRules";
+import { ValidationRules, CandidateValidationRules } from "./validationRules";
 
 export const CreatePoll = ({ isOpen, onOpen, onClose }) => {
   const {
     errors,
+    candidateFieldErrors,
     loading,
     candidates,
+    values,
     handleChange,
     addCandidate,
     handleSubmit,
     handleImage,
-  } = usePollForm(ValidationRules);
+  } = usePollForm(ValidationRules, CandidateValidationRules);
 
-  const ErrorMessage = ({ type }) => {
-    const errorMessage = errors[type];
-    return errors[type] ? (
+  const ErrorMessage = ({ type, index }) => {
+    const errorMessage =
+      index === -1
+        ? errors[type]
+        : candidateFieldErrors[index] && candidateFieldErrors[index][type];
+    return errorMessage ? (
       <p
         style={{
           color: "red",
@@ -43,6 +40,7 @@ export const CreatePoll = ({ isOpen, onOpen, onClose }) => {
       <Text />
     );
   };
+
   return (
     <ModalComponent
       color="#BDBDBD"
@@ -56,31 +54,19 @@ export const CreatePoll = ({ isOpen, onOpen, onClose }) => {
       <form style={{ color: "#BDBDBD" }}>
         <InputField
           color="#BDBDBD"
-          name="poll_name"
+          name="pollName"
           type="text"
           placeholder="Name of poll"
+          value={values.pollName}
           icon={<Ticket size={20} />}
+          onChange={(e) => {
+            handleChange(e, -1);
+          }}
         />
+        <ErrorMessage type="pollName" index={-1} />
         <Flex justifyContent="space-between" alignItems="center" mb="10px">
-          <p></p>
-          {/* <Heading as="h6" color="brand.black" fontSize="lg">
-            Candidates
-          </Heading> */}
+          <div />
           <Box onClick={onOpen}>
-            {/* <ButtonGroup size="sm" isAttached variant="outline">
-              <IconButton
-                aria-label="Add Candidate"
-                p="5px"
-                height=" 35px"
-                width="35px"
-                borderRadius="20px"
-                bg="brand.primary"
-                color="brand.white"
-                icon={<Plus size={32} />}
-                onClick={(e) => addCandidate(e)}
-              />
-             
-            </ButtonGroup> */}
             <Button
               p="5px 10px"
               size="sm"
@@ -94,29 +80,34 @@ export const CreatePoll = ({ isOpen, onOpen, onClose }) => {
         </Flex>
 
         {candidates.map((item, index) => (
-          <div key={index}>
+          <div key={[index, item.name].join(".")}>
             <Text pb="10px">Candidate {index + 1}</Text>
             <InputField
               color="#BDBDBD"
-              name="candidate_name"
+              name="name"
               type="text"
               placeholder="Name of Candidate"
+              value={item.name}
               icon={<User size={20} />}
               onChange={(e) => {
+                console.log("e", e);
                 handleChange(e, index);
               }}
             />
+            <ErrorMessage type="name" index={index} />
+
             <Box pos="relative" top="0" left="0">
               <FileInputField
                 color="#BDBDBD"
-                name="candidate_pic"
+                name="image"
                 type="file"
-                file={item.image ? item.image : null}
+                file={item.image}
                 icon={<Image size={20} />}
                 onChange={(e) => {
                   handleImage(e, index);
                 }}
               />
+              <ErrorMessage type="image" index={index} />
             </Box>
           </div>
         ))}
@@ -127,8 +118,9 @@ export const CreatePoll = ({ isOpen, onOpen, onClose }) => {
           w="100%"
           bg="brand.primary"
           color="brand.white"
+          onClick={(e) => handleSubmit(e)}
         >
-          Create Poll
+          {loading ? "Please wait..." : "Create Poll"}
         </Button>
       </form>
     </ModalComponent>
