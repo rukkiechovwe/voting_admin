@@ -70,7 +70,7 @@ export const InputField = ({
   onChange,
   placeholder,
   icon,
-  ...props
+  value,
 }) => {
   return (
     <InputGroup mb="20px" w="100%">
@@ -95,7 +95,7 @@ export const InputField = ({
         onChange={onChange}
         autoComplete="off"
         focusBorderColor="brand.primary"
-        {...props}
+        value={value}
       />
     </InputGroup>
   );

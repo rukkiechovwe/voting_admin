@@ -57,7 +57,7 @@ export const CreatePoll = ({ isOpen, onOpen, onClose }) => {
           name="pollName"
           type="text"
           placeholder="Name of poll"
-          value={values.pollName}
+         //  value={values.pollName}
           icon={<Ticket size={20} />}
           onChange={(e) => {
             handleChange(e, -1);
@@ -80,19 +80,15 @@ export const CreatePoll = ({ isOpen, onOpen, onClose }) => {
         </Flex>
 
         {candidates.map((item, index) => (
-          <div key={[index, item.name].join(".")}>
+          <div key={index + 1}>
             <Text pb="10px">Candidate {index + 1}</Text>
             <InputField
-              color="#BDBDBD"
               name="name"
               type="text"
               placeholder="Name of Candidate"
               value={item.name}
               icon={<User size={20} />}
-              onChange={(e) => {
-                console.log("e", e);
-                handleChange(e, index);
-              }}
+              onChange={(e) => handleChange(e, index)}
             />
             <ErrorMessage type="name" index={index} />
 
@@ -103,9 +99,7 @@ export const CreatePoll = ({ isOpen, onOpen, onClose }) => {
                 type="file"
                 file={item.image}
                 icon={<Image size={20} />}
-                onChange={(e) => {
-                  handleImage(e, index);
-                }}
+                onChange={(e) => handleImage(e, index)}
               />
               <ErrorMessage type="image" index={index} />
             </Box>

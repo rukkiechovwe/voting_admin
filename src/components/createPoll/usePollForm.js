@@ -1,8 +1,17 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { db, firestore_collection, firestore_addDoc } from "../../firebase";
+import {
+  db,
+  storage,
+  firestore_collection,
+  firestore_addDoc,
+  firestore_ref,
+  firestore_uploadBytes,
+  firestore_getDownloadURL,
+} from "../../firebase";
 
 const usePollForm = (validationRules, candidateValidationRules) => {
+  //   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
   const [candidateFieldErrors, setCandidateFieldErrors] = useState([]);
   const [errors, setErrors] = useState({});
@@ -11,12 +20,49 @@ const usePollForm = (validationRules, candidateValidationRules) => {
     {
       name: "",
       image: null,
+      votes: 0,
     },
   ]);
 
-  const navigate = useNavigate();
-
-  const createPoll = async () => {};
+  const addCandidate = (event) => {
+    event.preventDefault();
+    const newCandidate = {
+      name: "",
+      image: null,
+    };
+    setCandidates((candidates) => [...candidates, newCandidate]);
+  };
+  const uploadImage = async () => {
+    candidates.forEach(async (item, index) => {
+      const storageRef = firestore_ref(storage, `candidates/${item.name}`);
+      await firestore_uploadBytes(storageRef, item.image)
+        .then((snapshot) => {
+          firestore_getDownloadURL(firestore_ref(storage, storageRef)).then(
+            (url) => {
+              console.log(url);
+              candidates[index].image = url;
+              setCandidates([...candidates]);
+            }
+          );
+        })
+        .catch((error) => {
+          console.log(error);
+          console.log(error.message);
+        });
+    });
+    console.log(candidates);
+    return candidates;
+  };
+  const createPoll = async () => {
+    await uploadImage();
+    // upload poll with candidate image url
+    console.log(candidates);
+    const docRef = await firestore_addDoc(firestore_collection(db, "poll"), {
+      pollName: values.pollName,
+      candidates: candidates,
+    });
+    console.log("Document written with ID: ", docRef.id);
+  };
 
   /// index is -1 for non-candidate fields
   const handleChange = (event, index) => {
@@ -34,17 +80,9 @@ const usePollForm = (validationRules, candidateValidationRules) => {
     setCandidates([...candidates]);
   };
 
-  const addCandidate = (event) => {
-    event.preventDefault();
-    const newCandidate = {
-      name: "",
-      image: null,
-    };
-    setCandidates((candidates) => [...candidates, newCandidate]);
-  };
-
   const handleSubmit = (event) => {
     event.preventDefault();
+    console.log(values);
     setErrors({});
     setCandidateFieldErrors([]);
     let pollValid = true;
