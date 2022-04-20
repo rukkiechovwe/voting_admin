@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { auth, signInUser } from "../../firebase";
+import { TOKEN } from "../../utils/constants";
 
 const useLoginForm = (validationRules) => {
   const [values, setValues] = useState({});
@@ -13,8 +14,8 @@ const useLoginForm = (validationRules) => {
       .then((userCredential) => {
         const user = userCredential.user;
         console.log(user);
-        localStorage.setItem("admin_id", user.uid);
-        navigate("../");
+        localStorage.setItem(TOKEN, user.uid);
+        navigate("/");
       })
       .catch((error) => {
         console.log(error);

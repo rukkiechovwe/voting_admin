@@ -5,31 +5,33 @@ import Nav from "./components/nav";
 import Router from "./router";
 import { theme } from "./theme";
 import AdminContextProvider from "./context/adminContext";
+import { TOKEN } from "./utils/constants";
 
 function App() {
-  const [token, setToken] = useState(false);
+  const [hasToken, setHasToken] = useState(false);
   const navigate = useNavigate();
-  const item = localStorage.getItem("admin_id");
 
   useEffect(() => {
-    if (item) {
-      setToken(true);
+    const savedToken = localStorage.getItem(TOKEN);
+    if (savedToken) {
+      setHasToken(true);
     } else {
-      navigate("../login");
+      navigate("/login");
     }
-  }, [item]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <AdminContextProvider>
       <ChakraProvider theme={theme}>
         <Flex className="App">
-          {token ? (
+          {hasToken ? (
             <>
               <Nav />
-              <Router token={token} />
+              <Router hasToken={hasToken} />
             </>
           ) : (
-            <Router token={token} />
+            <Router hasToken={hasToken} />
           )}
         </Flex>
       </ChakraProvider>

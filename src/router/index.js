@@ -7,10 +7,10 @@ import StudentDetail from "../pages/studentDetail";
 import StudentList from "../pages/students";
 import Login from "../pages/authentication/login";
 
-const Router = ({ token }) => {
+const Router = ({ hasToken }) => {
   return (
     <Routes>
-      {token ? (
+      {hasToken ? (
         <>
           <Route path="/" element={<Home />} />
           <Route path="/students" element={<StudentList />} />
@@ -18,7 +18,7 @@ const Router = ({ token }) => {
           <Route path="/create-poll" element={<Home />} />
           <Route path="/account" element={<Account />} />
           <Route path="/admin" element={<AdminPage />} />
-          <Route path="/student-detail" element={<StudentDetail />} />
+          <Route path="/student-detail?sid=:id" element={<StudentDetail />} />
         </>
       ) : (
         <Route path="/login" element={<Login />} />
