@@ -6,6 +6,7 @@ import {
   InputRightElement,
   Button,
   Text,
+  Select,
 } from "@chakra-ui/react";
 import { Password, EyeClosed, Eye } from "phosphor-react";
 
@@ -141,6 +142,47 @@ export const FileInputField = ({ name, onChange, icon, file }) => {
       >
         {file ? file.name : "Select Candidate Image"}
       </Text>
+    </InputGroup>
+  );
+};
+
+export const SelectField = ({
+  name,
+  onChange,
+  placeholder,
+  icon,
+  color,
+  children,
+}) => {
+  return (
+    <InputGroup
+      mb="20px"
+      w="100%"
+      borderRadius="0.375rem"
+      border="1px"
+      borderColor="#E0E0E0"
+      h="c"
+    >
+      <InputLeftElement
+        pointerEvents="none"
+        children={icon}
+          color="rgb(189, 189, 189)"
+        my="5px"
+        mx="10px"
+      />
+      <Select
+        color={color}
+        fontSize="14px"
+        h="50px"
+        pl="35px"
+        border="0px"
+        borderColor="#E0E0E0"
+        placeholder={placeholder}
+        name={name}
+        onChange={onChange}
+      >
+        {children}
+      </Select>
     </InputGroup>
   );
 };

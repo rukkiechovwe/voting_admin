@@ -10,10 +10,11 @@ import {
   useDisclosure,
 } from "@chakra-ui/react";
 import Candidates from "../../components/candidates";
+
 import { Plus } from "phosphor-react";
 import { CreatePoll } from "../../components/createPoll";
 
-function Election() {
+function ElectionDetail() {
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   return (
@@ -64,4 +65,4 @@ function Election() {
   );
 }
 
-export default Election;
+export default ElectionDetail;
