@@ -1,10 +1,9 @@
+import { doc, setDoc } from "firebase/firestore";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import {
   db,
   storage,
-  firestore_collection,
-  firestore_addDoc,
   firestore_ref,
   firestore_uploadBytes,
   firestore_getDownloadURL,
@@ -32,16 +31,40 @@ const usePollForm = (validationRules, candidateValidationRules) => {
     };
     setCandidates((candidates) => [...candidates, newCandidate]);
   };
-  const uploadImage = async () => {
-    candidates.forEach(async (item, index) => {
-      const storageRef = firestore_ref(storage, `candidates/${item.name}`);
-      await firestore_uploadBytes(storageRef, item.image)
-        .then((snapshot) => {
+
+  const createPoll = async () => {
+    candidates.forEach(async (candidate) => {
+      const storageRef = firestore_ref(
+        storage,
+        `candidates/${candidate.name.split(" ").join("_")}`
+      );
+      await firestore_uploadBytes(storageRef, candidate.image)
+        .then((_) => {
           firestore_getDownloadURL(firestore_ref(storage, storageRef)).then(
-            (url) => {
-              console.log(url);
-              candidates[index].image = url;
-              setCandidates([...candidates]);
+            async (url) => {
+              const uploadCandidate = { ...candidate, imageUrl: url };
+              delete uploadCandidate.image;
+              // NOTES
+              // reference a collection using
+              // collection(db, "collectionName"), the number of paths of a collection must
+              // be an odd number eg
+              // 1. collection(db, "collectionName")
+              // 2. collection(db, "collectionName", "documentId1", "collectionName2")
+
+              // reference a document using
+              // doc(db, "collectionName1", "documentId"), the number of paths of a document must
+              // be an even number eg
+              // 1. doc(db, "collectionName", "documentId")
+              // 2. doc(db, "collectionName1", "documentId1", "collectionName2", "documentId2")
+
+              const docRef = doc(
+                db,
+                "election2022", // root collection
+                "candidates", // documentId
+                "2022_candidates", // subcollection
+                `${uploadCandidate.name.split(" ").join("_")}` // subcollection-documentId
+              );
+              await setDoc(docRef, uploadCandidate);
             }
           );
         })
@@ -50,18 +73,6 @@ const usePollForm = (validationRules, candidateValidationRules) => {
           console.log(error.message);
         });
     });
-    console.log(candidates);
-    return candidates;
-  };
-  const createPoll = async () => {
-    await uploadImage();
-    // upload poll with candidate image url
-    console.log(candidates);
-    const docRef = await firestore_addDoc(firestore_collection(db, "poll"), {
-      pollName: values.pollName,
-      candidates: candidates,
-    });
-    console.log("Document written with ID: ", docRef.id);
   };
 
   /// index is -1 for non-candidate fields
@@ -80,7 +91,7 @@ const usePollForm = (validationRules, candidateValidationRules) => {
     setCandidates([...candidates]);
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
     console.log(values);
     setErrors({});
@@ -106,7 +117,8 @@ const usePollForm = (validationRules, candidateValidationRules) => {
     // if all valid, create poll
     if (pollValid && candidatesValid) {
       setLoading(true);
-      createPoll();
+      await createPoll();
+      setLoading(false);
     }
   };
 

@@ -18,7 +18,7 @@ const Router = ({ hasToken }) => {
           <Route path="/create-poll" element={<Home />} />
           <Route path="/account" element={<Account />} />
           <Route path="/admin" element={<AdminPage />} />
-          <Route path="/student-detail?sid=:id" element={<StudentDetail />} />
+          <Route path="/student-detail" element={<StudentDetail />} />
         </>
       ) : (
         <Route path="/login" element={<Login />} />
