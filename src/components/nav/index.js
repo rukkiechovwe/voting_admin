@@ -69,7 +69,7 @@ const Nav = () => {
             <List>
               <NavListItem to="/" icon={HouseSimple} name="Dashboard" />
               <NavListItem to="/students" icon={UsersThree} name="Students" />
-              <NavListItem to="/election" icon={Ticket} name="Election" />
+              <NavListItem to="/elections" icon={Ticket} name="Election" />
               <NavListItem to="/admin" icon={Users} name=" Admins" />
             </List>
           </Box>

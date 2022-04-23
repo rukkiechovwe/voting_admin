@@ -1,4 +1,6 @@
 import React from "react";
+import { Outlet } from "react-router-dom";
+
 import TopHeader from "../../components/topHeader";
 import { Box, Flex } from "@chakra-ui/react";
 import RecentVotes from "../../components/recentVotes";
@@ -16,7 +18,8 @@ function Home() {
         },
       }}
     >
-      <TopHeader  />
+      <TopHeader />
+
       <Flex
         px="20px"
         py="20px"
@@ -43,6 +46,7 @@ function Home() {
           <RecentVotes />
         </Box>
       </Flex>
+      <Outlet />
     </Box>
   );
 }

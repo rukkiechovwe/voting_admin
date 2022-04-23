@@ -1,8 +1,17 @@
 import React from "react";
 import TopHeader from "../../components/topHeader";
-import { Box, Flex, Heading, Button, useDisclosure } from "@chakra-ui/react";
+import {
+  Box,
+  Flex,
+  Heading,
+  Button,
+  useDisclosure,
+  Link,
+} from "@chakra-ui/react";
 import Election from "../../components/election";
+import { Link as RL, Outlet } from "react-router-dom";
 
+// import ElectionCard from "../../common/electionCard";
 import { Plus } from "phosphor-react";
 import { CreateElection } from "../../components/createElection";
 
@@ -18,12 +27,13 @@ function Elections() {
         },
       }}
     >
+      <Outlet />
       <TopHeader />
       <Box p="20px">
         <Heading fontSize="28px" fontWeight="500" mb="16px">
           Elections
         </Heading>
-        <Election />
+        <Election/>
         <Flex justifyContent="center" pb="20px">
           <Button
             onClick={onOpen}

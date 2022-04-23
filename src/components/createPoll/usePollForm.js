@@ -28,6 +28,7 @@ const usePollForm = (validationRules, candidateValidationRules) => {
     const newCandidate = {
       name: "",
       image: null,
+      votes: 0,
     };
     setCandidates((candidates) => [...candidates, newCandidate]);
   };
@@ -59,7 +60,7 @@ const usePollForm = (validationRules, candidateValidationRules) => {
 
               const docRef = doc(
                 db,
-                "election2022", // root collection
+                "Election 2022", // root collection
                 "candidates", // documentId
                 "2022_candidates", // subcollection
                 `${uploadCandidate.name.split(" ").join("_")}` // subcollection-documentId

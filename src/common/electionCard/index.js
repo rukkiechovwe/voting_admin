@@ -1,4 +1,4 @@
-import { Link, Flex, Heading, Text } from "@chakra-ui/react";
+import { Box, Flex, Heading, Text } from "@chakra-ui/react";
 import { Link as RL } from "react-router-dom";
 
 const ElectionCard = ({
@@ -11,24 +11,12 @@ const ElectionCard = ({
   link,
 }) => {
   return (
-    <Link
-      as={RL}
-      to={link}
+    <Box
       bg="brand.white"
       boxShadow=" 0px 3px 10px rgba(200, 200, 200, 0.17)"
       borderRadius="10px"
-      mr="15px"
-      mb="15px"
       p="20px"
-      sx={{
-        ":last-child": {
-          marginRight: 0,
-        },
-        width: "47.7%",
-        "@media screen and (min-width: 960px)": {
-          width: "31.5%",
-        },
-      }}
+      w="100%"
     >
       <Heading fontSize="20px" fontWeight="500" pb="10px">
         Election {year}
@@ -50,7 +38,7 @@ const ElectionCard = ({
           Minimum Level: {minimumLevel}
         </Text>
       </Flex>
-    </Link>
+    </Box>
   );
 };
 

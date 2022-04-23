@@ -15,8 +15,8 @@ const Router = ({ hasToken }) => {
         <>
           <Route path="/" element={<Home />} />
           <Route path="/students" element={<StudentList />} />
-          <Route path="/election" element={<Elections />} />
-          <Route path="/election-detail" element={<ElectionDetail />} />
+          <Route path="/elections" element={<Elections />}></Route>
+          <Route path="/elections/:electionYear" element={<ElectionDetail />} />
           <Route path="/create-poll" element={<Home />} />
           <Route path="/account" element={<Account />} />
           <Route path="/admin" element={<AdminPage />} />

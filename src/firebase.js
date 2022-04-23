@@ -6,7 +6,7 @@ import {
 } from "firebase/auth";
 import {
   getFirestore,
-  collection,
+  collection,doc,
   addDoc,
   getDoc,
   getDocs,
@@ -32,6 +32,7 @@ export const createUser = createUserWithEmailAndPassword;
 export const signInUser = signInWithEmailAndPassword;
 export const firestore_collection = collection;
 export const firestore_addDoc = addDoc;
+export const firestore_doc = doc;
 export const firestore_getDoc = getDoc;
 export const firestore_getDocs = getDocs;
 export const firestore_ref = ref;

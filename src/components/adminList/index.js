@@ -22,7 +22,6 @@ import { AdminContext } from "../../context/adminContext";
 
 const Admin = () => {
   const { adminList } = useContext(AdminContext);
-  //   console.log(adminList);
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   return (

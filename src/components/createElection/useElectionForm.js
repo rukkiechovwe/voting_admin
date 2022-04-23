@@ -1,15 +1,9 @@
 import { useState } from "react";
-import {
-  db,
-  storage,
-  firestore_collection,
-  firestore_addDoc,
-  firestore_ref,
-  firestore_uploadBytes,
-  firestore_getDownloadURL,
-} from "../../firebase";
+import { useNavigate } from "react-router-dom";
+import { db, firestore_collection, firestore_addDoc } from "../../firebase";
 
-const useElectionForm = (validationRules, candidateValidationRules) => {
+const useElectionForm = (validationRules) => {
+  const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
   const [errors, setErrors] = useState({});
   const [values, setValues] = useState({});
@@ -17,7 +11,13 @@ const useElectionForm = (validationRules, candidateValidationRules) => {
 
   const createElection = async () => {
     const docRef = await firestore_addDoc(
-      firestore_collection(db, `Election ${values.electionYear}`),
+      firestore_collection(
+        db,
+        "election", // root collection
+        values.electionYear, // documentId
+        "Metadata" // subcollection
+        //   "electionData" // documentId
+      ),
       {
         electionYear: values.electionYear,
         startDate: values.startDate,
@@ -29,6 +29,7 @@ const useElectionForm = (validationRules, candidateValidationRules) => {
       }
     );
     console.log("Document written with ID: ", docRef.id);
+    navigate(0);
   };
 
   const handleChange = (event) => {

@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useContext } from "react";
+import { useParams } from "react-router-dom";
 import TopHeader from "../../components/topHeader";
 import {
   Box,
@@ -13,9 +14,14 @@ import Candidates from "../../components/candidates";
 
 import { Plus } from "phosphor-react";
 import { CreatePoll } from "../../components/createPoll";
+import { ElectionContext } from "../../context/electionContext";
 
 function ElectionDetail() {
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const { getElectionYear } = useContext(ElectionContext);
+
+  let params = useParams();
+  getElectionYear(params.electionYear);
 
   return (
     <Box
@@ -31,7 +37,7 @@ function ElectionDetail() {
         <Flex mb="16px" justifyContent="space-between">
           <Box>
             <Heading fontSize="28px" fontWeight="500">
-              2021 Election
+              {params.electionYear} Election
             </Heading>
             <Text pt="10px" fontSize="14px">
               Election starts on the 25th of March, 8:00am
