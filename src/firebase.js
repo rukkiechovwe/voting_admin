@@ -6,10 +6,14 @@ import {
 } from "firebase/auth";
 import {
   getFirestore,
-  collection,doc,
+  collection,
+  doc,
+  setDoc,
   addDoc,
   getDoc,
   getDocs,
+  updateDoc,
+  arrayUnion,
 } from "firebase/firestore";
 
 import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
@@ -30,9 +34,13 @@ export const storage = getStorage(app);
 
 export const createUser = createUserWithEmailAndPassword;
 export const signInUser = signInWithEmailAndPassword;
+
 export const firestore_collection = collection;
+export const firestore_setDoc = setDoc;
 export const firestore_addDoc = addDoc;
 export const firestore_doc = doc;
+export const firestore_updateDoc = updateDoc;
+export const firestore_arrayUnion = arrayUnion;
 export const firestore_getDoc = getDoc;
 export const firestore_getDocs = getDocs;
 export const firestore_ref = ref;

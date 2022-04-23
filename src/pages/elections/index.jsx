@@ -38,14 +38,14 @@ function Elections() {
           <Button
             onClick={onOpen}
             aria-label="Create Poll"
-            p="8px"
+            p="5px"
             height=" 45px"
             width="200px"
             bg="brand.primary"
             color="brand.white"
             border="none"
             boxShadow=" 0px 3px 10px rgba(200, 200, 200, 0.17)"
-            rightIcon={<Plus size={24} weight="bold" />}
+            rightIcon={<Plus size={20} weight="bold" />}
           >
             Add Election
           </Button>

@@ -31,17 +31,25 @@ function ElectionContextProvider({ children }) {
   };
 
   const getElections = async () => {
-    console.log("get elections");
     const querySnapshot = await firestore_getDocs(
-      firestore_collection(db, "election")
+      firestore_collection(db, "elections")
     );
     const data = [];
-    querySnapshot.forEach((doc) => {
-      data.push(doc.data());
-      console.log(doc.id, " => ", doc.data());
+    querySnapshot.forEach(async (doc) => {
+      let year = doc.data();
+      year.years.forEach(async (item) => {
+        const docRef = firestore_doc(db, item, "Metadata");
+        const docSnap = await firestore_getDoc(docRef);
+
+        if (docSnap.exists()) {
+          data.push(docSnap.data());
+          console.log(data);
+        } else {
+          console.log("No such document!");
+        }
+      });
     });
-    setElections(data);
-    console.log(data);
+    setElections(await data);
   };
 
   useEffect(() => {
