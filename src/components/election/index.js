@@ -31,7 +31,7 @@ const Election = () => {
                   width: "31.5%",
                 },
               }}
-              to={`/elections/${e.electionYear}`}
+              to={`/elections/${e.electionYear}/overview`}
             >
               <ElectionCard
                 year={e.electionYear}

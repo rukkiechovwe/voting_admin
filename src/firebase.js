@@ -34,7 +34,18 @@ export const storage = getStorage(app);
 
 export const createUser = createUserWithEmailAndPassword;
 export const signInUser = signInWithEmailAndPassword;
+// NOTES
+// reference a collection using
+// collection(db, "collectionName"), the number of paths of a collection must
+// be an odd number eg
+// 1. collection(db, "collectionName")
+// 2. collection(db, "collectionName", "documentId1", "collectionName2")
 
+// reference a document using
+// doc(db, "collectionName1", "documentId"), the number of paths of a document must
+// be an even number eg
+// 1. doc(db, "collectionName", "documentId")
+// 2. doc(db, "collectionName1", "documentId1", "collectionName2", "documentId2")
 export const firestore_collection = collection;
 export const firestore_setDoc = setDoc;
 export const firestore_addDoc = addDoc;

@@ -1,31 +1,21 @@
 import React from "react";
-import { Outlet } from "react-router-dom";
-
-import TopHeader from "../../components/topHeader";
 import { Box, Flex } from "@chakra-ui/react";
 import RecentVotes from "../../components/recentVotes";
 import Students from "../../components/students";
 import TotalNumbers from "../../components/totalNumbers";
 import VotingOverview from "../../components/votingOverview";
+import ElectionDetail from "../../components/electionDetail";
 
-function Home() {
+function Overview() {
   return (
-    <Box
-      sx={{
-        width: "100% ",
-        "@media screen and (min-width: 880px)": {
-          width: "calc(100% - 200px)",
-        },
-      }}
-    >
-      <TopHeader />
-
+    <ElectionDetail>
       <Flex
         px="20px"
         py="20px"
+        width="100%"
         sx={{
           flexDirection: "column",
-          "@media screen and (min-width: 880px)": {
+          "@media screen and (min-width: 1024px)": {
             flexDirection: "row",
           },
         }}
@@ -33,7 +23,7 @@ function Home() {
         <Box
           sx={{
             width: "100%",
-            "@media screen and (min-width: 880px)": {
+            "@media screen and (min-width: 1024px)": {
               width: "calc(100% - 320px)",
             },
           }}
@@ -42,13 +32,10 @@ function Home() {
           <VotingOverview />
           <Students title="Recent Students" />
         </Box>
-        <Box>
-          <RecentVotes />
-        </Box>
+        <RecentVotes />
       </Flex>
-      <Outlet />
-    </Box>
+    </ElectionDetail>
   );
 }
 
-export default Home;
+export default Overview;

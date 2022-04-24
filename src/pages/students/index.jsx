@@ -1,21 +1,15 @@
 import React from "react";
-import TopHeader from "../../components/topHeader";
-import { Box } from "@chakra-ui/react";
+import { Box, Flex } from "@chakra-ui/react";
 import Students from "../../components/students";
+import ElectionDetail from "../../components/electionDetail";
 
 function StudentList() {
   return (
-    <Box
-      sx={{
-        width: "calc(100% - 200px)",
-      }}
-    >
-      <TopHeader />
-      <Box p="20px">
+    <ElectionDetail>
+      <Box p="20px" width="100%">
         <Students fullPage={true} title="Students" />
       </Box>
-    </Box>
-    
+    </ElectionDetail>
   );
 }
 

@@ -1,6 +1,6 @@
 import React from "react";
-import TopHeader from "../../components/topHeader";
 import { Box, Flex, Text, Button } from "@chakra-ui/react";
+import MainPage from "../../components/mainPage";
 
 function StudentDetail() {
   const StudentInfo = ({ info, value }) => {
@@ -14,12 +14,7 @@ function StudentDetail() {
     );
   };
   return (
-    <Box
-      sx={{
-        width: "calc(100% - 200px)",
-      }}
-    >
-      <TopHeader />
+    <MainPage>
       <Box py="25px" px="35px">
         <Text fontSize={22} fontWeight="600">
           <span>Student / </span>
@@ -73,7 +68,7 @@ function StudentDetail() {
           Mark as Not Eligible
         </Button>
       </Box>
-    </Box>
+    </MainPage>
   );
 }
 

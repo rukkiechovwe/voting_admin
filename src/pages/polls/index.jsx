@@ -1,6 +1,4 @@
 import React, { useContext } from "react";
-import { useParams } from "react-router-dom";
-import TopHeader from "../../components/topHeader";
 import {
   Box,
   Flex,
@@ -10,34 +8,23 @@ import {
   IconButton,
   useDisclosure,
 } from "@chakra-ui/react";
-import Candidates from "../../components/candidates";
-
 import { Plus } from "phosphor-react";
+import Candidates from "../../components/candidates";
+import ElectionDetail from "../../components/electionDetail";
 import { CreatePoll } from "../../components/createPoll";
 import { ElectionContext } from "../../context/electionContext";
 
-function ElectionDetail() {
+function Polls() {
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const { getElectionYear } = useContext(ElectionContext);
-
-  let params = useParams();
-  getElectionYear(params.electionYear);
+  const { electionYear } = useContext(ElectionContext);
 
   return (
-    <Box
-      sx={{
-        width: "100% ",
-        "@media screen and (min-width: 880px)": {
-          width: "calc(100% - 200px)",
-        },
-      }}
-    >
-      <TopHeader />
-      <Box p="20px">
+    <ElectionDetail>
+      <Box p="20px" width="100%">
         <Flex mb="16px" justifyContent="space-between">
           <Box>
             <Heading fontSize="28px" fontWeight="500">
-              {params.electionYear} Election
+              {electionYear} Election
             </Heading>
             <Text pt="10px" fontSize="14px">
               Election starts on the 25th of March, 8:00am
@@ -63,12 +50,10 @@ function ElectionDetail() {
 
         <Candidates position="President" />
         <Candidates position="Vice-President" />
-        <Candidates position="Secretary" />
       </Box>
-
       <CreatePoll isOpen={isOpen} onOpen={onOpen} onClose={onClose} />
-    </Box>
+    </ElectionDetail>
   );
 }
 
-export default ElectionDetail;
+export default Polls;

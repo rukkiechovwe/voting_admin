@@ -9,7 +9,7 @@ const RecentVotes = () => {
       sx={{
         width: "100%",
         marginLeft: "0px",
-        "@media screen and (min-width: 880px)": {
+        "@media screen and (min-width: 1024px)": {
           width: " 320px",
           marginLeft: "20px",
         },

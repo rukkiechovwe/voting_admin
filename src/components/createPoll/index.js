@@ -1,12 +1,19 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Text, Flex, Button, Box } from "@chakra-ui/react";
 import { ModalComponent } from "../../common/modal";
-import { FileInputField, InputField } from "../../common/inputField";
+import {
+  FileInputField,
+  InputField,
+  SelectField,
+} from "../../common/inputField";
 import { Ticket, User, Image } from "phosphor-react";
 import usePollForm from "./usePollForm";
 import { ValidationRules, CandidateValidationRules } from "./validationRules";
+import { ElectionContext } from "../../context/electionContext";
 
 export const CreatePoll = ({ isOpen, onOpen, onClose }) => {
+  const { electionDetail, electionYear } = useContext(ElectionContext);
+
   const {
     errors,
     candidateFieldErrors,
@@ -17,7 +24,7 @@ export const CreatePoll = ({ isOpen, onOpen, onClose }) => {
     addCandidate,
     handleSubmit,
     handleImage,
-  } = usePollForm(ValidationRules, CandidateValidationRules);
+  } = usePollForm(ValidationRules, CandidateValidationRules, electionYear);
 
   const ErrorMessage = ({ type, index }) => {
     const errorMessage =
@@ -52,20 +59,24 @@ export const CreatePoll = ({ isOpen, onOpen, onClose }) => {
       isCentered={false}
     >
       <form style={{ color: "#BDBDBD" }}>
-        <InputField
-          color="#BDBDBD"
+        <SelectField
           name="pollName"
-          type="text"
-          placeholder="Name of poll"
-         //  value={values.pollName}
+          placeholder="Select poll"
           icon={<Ticket size={20} />}
           onChange={(e) => {
             handleChange(e, -1);
           }}
-        />
-        <ErrorMessage type="pollName" index={-1} />
+        >
+          {electionDetail.pollsAvailable.map((e) => (
+            <option key={e} value={e}>
+              {e}
+            </option>
+          ))}
+        </SelectField>
+        <ErrorMessage type="PollName" index={-1} />
+
         <Flex justifyContent="space-between" alignItems="center" mb="10px">
-          <div />
+          <Box />
           <Box onClick={onOpen}>
             <Button
               p="5px 10px"
@@ -80,7 +91,7 @@ export const CreatePoll = ({ isOpen, onOpen, onClose }) => {
         </Flex>
 
         {candidates.map((item, index) => (
-          <div key={index + 1}>
+          <Box key={index + 1}>
             <Text pb="10px">Candidate {index + 1}</Text>
             <InputField
               name="name"
@@ -103,7 +114,7 @@ export const CreatePoll = ({ isOpen, onOpen, onClose }) => {
               />
               <ErrorMessage type="image" index={index} />
             </Box>
-          </div>
+          </Box>
         ))}
 
         <Button

@@ -1,17 +1,8 @@
 import React from "react";
-import TopHeader from "../../components/topHeader";
-import {
-  Box,
-  Flex,
-  Heading,
-  Button,
-  useDisclosure,
-  Link,
-} from "@chakra-ui/react";
+import { Box, Flex, Heading, Button, useDisclosure } from "@chakra-ui/react";
 import Election from "../../components/election";
-import { Link as RL, Outlet } from "react-router-dom";
+import MainPage from "../../components/mainPage";
 
-// import ElectionCard from "../../common/electionCard";
 import { Plus } from "phosphor-react";
 import { CreateElection } from "../../components/createElection";
 
@@ -19,21 +10,12 @@ function Elections() {
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   return (
-    <Box
-      sx={{
-        width: "100% ",
-        "@media screen and (min-width: 880px)": {
-          width: "calc(100% - 200px)",
-        },
-      }}
-    >
-      <Outlet />
-      <TopHeader />
+    <MainPage>
       <Box p="20px">
         <Heading fontSize="28px" fontWeight="500" mb="16px">
           Elections
         </Heading>
-        <Election/>
+        <Election />
         <Flex justifyContent="center" pb="20px">
           <Button
             onClick={onOpen}
@@ -53,7 +35,7 @@ function Elections() {
       </Box>
 
       <CreateElection isOpen={isOpen} onOpen={onOpen} onClose={onClose} />
-    </Box>
+    </MainPage>
   );
 }
 

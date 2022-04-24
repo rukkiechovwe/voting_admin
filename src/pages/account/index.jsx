@@ -1,20 +1,15 @@
 import React from "react";
-import TopHeader from "../../components/topHeader";
-import { Box, Flex } from "@chakra-ui/react";
+import { Flex } from "@chakra-ui/react";
 import ResetPassword from "../../components/resetPassword";
+import MainPage from "../../components/mainPage";
 
 function Account() {
   return (
-    <Box
-      sx={{
-        width: "calc(100% - 200px)",
-      }}
-    >
-      <TopHeader />
+    <MainPage>
       <Flex justifyContent="center" alignItems="center" h="80vh" p="20px">
         <ResetPassword />
       </Flex>
-    </Box>
+    </MainPage>
   );
 }
 
