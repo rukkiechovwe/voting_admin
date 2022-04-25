@@ -82,3 +82,24 @@ button:focus {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 } */
+
+@media screen and (max-width: 1270px) {
+  .student_none {
+    display: none;
+  }
+}
+@media screen and (max-width: 1024px) {
+  .student_none {
+    display: table-cell;
+  }
+}
+@media screen and (max-width: 768px) {
+  .student_none {
+    display: none;
+  }
+}
+/* @media screen and (max-width: 770px) {
+  .lg_none {
+    display: none;
+  }
+} */

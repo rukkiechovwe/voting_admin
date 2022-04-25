@@ -34,9 +34,9 @@ const TotalNumbers = () => {
       mb="20px"
       boxShadow=" 0px 3px 10px rgba(200, 200, 200, 0.17)"
     >
-      <Card title="Total Students" number="7,4576" />
-      <Card title="Total Voters" number="576" />
-      <Card title="Total Votes" number="45" last={true} />
+      <Card title="Total Students" number="0" />
+      <Card title="Total Voters" number="0" />
+      <Card title="Total Votes" number="0" last={true} />
     </Flex>
   );
 };

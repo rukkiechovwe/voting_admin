@@ -1,5 +1,5 @@
-import { Box, Flex, Spacer, Text } from "@chakra-ui/react";
-// import { Bell } from "phosphor-react";
+import { Box, Flex, Img, Spacer, Text } from "@chakra-ui/react";
+import checkCircle from "../../assets/icons/checkCircle.svg";
 
 const RecentVoteCard = ({ name }) => {
   return (
@@ -10,9 +10,8 @@ const RecentVoteCard = ({ name }) => {
       borderBottom="1px"
       borderColor="gray.200"
     >
-      <Box bg="brand.primary" borderRadius="full" h="40px" w="40px"></Box>
-
-      <Flex w="88%" align="center" pl="15px">
+      <Img src={checkCircle} w="35px" h="35px" />
+      <Flex w="100%" align="center" pl="15px">
         <Box>
           <Text fontSize="14px">{name}</Text>
           <Text fontSize="12px">Just now</Text>

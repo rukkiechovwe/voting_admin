@@ -8,12 +8,12 @@ const Students = ({ fullPage, title }) => {
       bg="brand.white"
       color="brand.black"
       borderRadius="10px"
-      mb="20px"
+      
       boxShadow=" 0px 3px 10px rgba(200, 200, 200, 0.17)"
     >
       <Box
         w="100%"
-        p="20px"
+        p="25px 20px"
         borderBottom="1px solid"
         borderColor="brand.borderColor"
       >
@@ -21,19 +21,18 @@ const Students = ({ fullPage, title }) => {
           {title}
         </Text>
       </Box>
-      <Table variant="simple">
+      <Table variant="simple" position="relative" minH="71px">
         <Thead>
           <Tr>
             <TableHead text="Name" />
             <TableHead text="Matriculation Number" />
             <TableHead text="Student Email" />
-            {fullPage && <TableHead text="Level" />}
-            {fullPage && <TableHead text="Eligible" />}
-            {/* <TableHead /> */}
+            <TableHead text="Level" className="student_none" />
+            <TableHead text="Eligible" className="student_none" />
           </Tr>
         </Thead>
         <Tbody>
-          <Tr
+          {/* <Tr
             _hover={{
               background: " #c8c8c824",
               borderRadius: "10px",
@@ -48,19 +47,30 @@ const Students = ({ fullPage, title }) => {
               to="/student-detail"
             >
               <Td borderBottom="none">Emily Rose</Td>
-              {/* <Td>Rose</Td> */}
               <Td borderBottom="none">PSC1707540</Td>
-              <Td borderBottom="none" sx={{ "wordWrap": " anywhere" }}>
+              <Td borderBottom="none" sx={{ wordWrap: " anywhere" }}>
                 emily.rose@psc.uniben.edu
               </Td>
-              {fullPage && <Td borderBottom="none">400</Td>}
-              {fullPage && <Td borderBottom="none">No</Td>}
-              {/* <Td borderBottom="none">
-              <Link color="#4f4f4f" to="/">
-                <Eye size={20} />
-              </Link>
-            </Td> */}
+              <Td borderBottom="none" className="student_none">
+                400
+              </Td>
+              <Td borderBottom="none" className="student_none">
+                No
+              </Td>
             </Link>
+          </Tr> */}
+          <Tr position="relative">
+            <Td p="40px 0">
+              <Text
+                position="absolute"
+                top="30px"
+                width="100%"
+                textAlign="center"
+                fontSize="14px"
+              >
+                <em>No students registered yet</em>
+              </Text>
+            </Td>
           </Tr>
         </Tbody>
       </Table>

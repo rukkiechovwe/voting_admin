@@ -10,31 +10,49 @@ import {
 export const ElectionContext = React.createContext();
 
 function ElectionContextProvider({ children }) {
+  const [loading, setLoading] = useState(true);
   const [electionYear, setElectionYear] = useState("");
-  const [electionDetail, setElectionDetail] = useState({});
   const [elections, setElections] = useState([]);
+  const [electionDetail, setElectionDetail] = useState({});
+  const [candidatesDetail, setCandidatesDetail] = useState([]);
 
-  const getElectionDetail = async () => {
-    const docRef = firestore_doc(db, electionYear, "Metadata");
+  const getElectionDetail = async (year) => {
+    setLoading(true);
+    const docRef = firestore_doc(db, year, "Metadata");
     const docSnap = await firestore_getDoc(docRef);
 
     if (docSnap.exists()) {
       console.log("Document data:", docSnap.data());
       setElectionDetail(docSnap.data());
+      setLoading(false);
     } else {
+      setLoading(false);
       console.log("No such document!");
     }
   };
-
+  const getCandidatesDetail = async (year) => {
+    setLoading(true);
+    const querySnapshot = await firestore_getDocs(
+      firestore_collection(db, year, "candidates", `${year}_candidates`)
+    );
+    querySnapshot.forEach((doc) => {
+      console.log(doc.data());
+      setCandidatesDetail((candidatesDetail) => [
+        ...candidatesDetail,
+        doc.data(),
+      ]);
+    });
+    setLoading(false);
+  };
   const getElectionYear = (year) => {
     setElectionYear(year);
   };
-
   const getElections = async () => {
+    setLoading(true);
+    setElections([]);
     const querySnapshot = await firestore_getDocs(
       firestore_collection(db, "elections")
     );
-    const data = [];
     querySnapshot.forEach(async (doc) => {
       let year = doc.data();
       year.years.forEach(async (item) => {
@@ -42,27 +60,33 @@ function ElectionContextProvider({ children }) {
         const docSnap = await firestore_getDoc(docRef);
 
         if (docSnap.exists()) {
-          data.push(docSnap.data());
-          console.log(data);
+          setElections((elections) => [...elections, docSnap.data()]);
         } else {
           console.log("No such document!");
         }
       });
     });
-    setElections(await data);
+    setLoading(false);
   };
 
   useEffect(() => {
     getElections();
     if (electionYear) {
-      console.log(electionYear);
-      getElectionDetail();
+      getElectionDetail(electionYear);
+      getCandidatesDetail(electionYear);
     }
   }, [electionYear]);
 
   return (
     <ElectionContext.Provider
-      value={{ electionYear, getElectionYear, electionDetail, elections }}
+      value={{
+        electionYear,
+        getElectionYear,
+        electionDetail,
+        elections,
+        candidatesDetail,
+        loading,
+      }}
     >
       {children}
     </ElectionContext.Provider>

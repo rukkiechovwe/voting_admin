@@ -10,6 +10,7 @@ const VotingOverviewCard = () => {
       h="100px"
       m="8px"
       p="20px"
+      
     >
       <Text fontSize="12px" color="brand.white">
         Candidate 1

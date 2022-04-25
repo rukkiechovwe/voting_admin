@@ -1,6 +1,6 @@
 import { Th } from "@chakra-ui/react";
 
-const TableHead = ({ text }) => {
+const TableHead = ({ text,className }) => {
   return (
     <Th
       textTransform="capitalize"
@@ -9,6 +9,7 @@ const TableHead = ({ text }) => {
       fontFamily="'BRFirmaRegular', sans-serif "
       borderBottom="1px"
       borderColor="#E0E0E0"
+      className={className}
     >
       {text}
     </Th>

@@ -1,21 +1,27 @@
 import { useContext } from "react";
 import { Box, Flex, Link, Text } from "@chakra-ui/react";
-import { Link as RL, Outlet } from "react-router-dom";
+import { Link as RL } from "react-router-dom";
 
 import ElectionCard from "../../common/electionCard";
 import { ElectionContext } from "../../context/electionContext";
+import { Spinner } from "../../common/Spinner";
 
 const Election = () => {
-  const { elections } = useContext(ElectionContext);
+  const { elections, loading } = useContext(ElectionContext);
 
   return (
-    <Box mb="2rem">
+    <Box mb="2rem" p="20px">
       <Flex
         sx={{
           flexWrap: "wrap",
         }}
       >
-        {elections ? (
+        {loading ? (
+          <Spinner
+            background="transparent"
+            height="calc(100vh - 290px)"
+          />
+        ) : elections.length !== 0 ? (
           elections.map((e, i) => (
             <Link
               key={i}
@@ -53,8 +59,6 @@ const Election = () => {
             <em>No elections have been created yet</em>
           </Flex>
         )}
-
-        <Outlet />
       </Flex>
     </Box>
   );

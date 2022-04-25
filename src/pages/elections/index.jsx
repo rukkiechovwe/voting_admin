@@ -11,8 +11,8 @@ function Elections() {
 
   return (
     <MainPage>
-      <Box p="20px">
-        <Heading fontSize="28px" fontWeight="500" mb="16px">
+      <Box>
+        <Heading fontSize="28px" fontWeight="500" p="20px 20px 16px 20px">
           Elections
         </Heading>
         <Election />
