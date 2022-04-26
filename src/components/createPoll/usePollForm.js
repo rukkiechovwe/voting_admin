@@ -48,7 +48,11 @@ const usePollForm = (
         .then((_) => {
           firestore_getDownloadURL(firestore_ref(storage, storageRef)).then(
             async (url) => {
-              const uploadCandidate = { ...candidate, imageUrl: url };
+              const uploadCandidate = {
+                ...candidate,
+                imageUrl: url,
+                pollName: values.pollName,
+              };
               delete uploadCandidate.image;
 
               const docRef = firestore_doc(
@@ -61,7 +65,7 @@ const usePollForm = (
               await firestore_setDoc(docRef, uploadCandidate);
             }
           );
-         //  navigate(0);
+          //  navigate(0);
         })
         .catch((error) => {
           console.log(error);

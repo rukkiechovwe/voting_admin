@@ -1,16 +1,14 @@
-___________TODO___________
-+ Subadmin Creation
 
 
+___________ADMIN TODO___________
++ Get candidates
++ Link active ui
++ Image upload size limit
++ Edit election details
++ Edit poll details
++ Log out
++ Reset password
++ Responsiveness
++ Image compression
++ Mark students as eligible
 
-
-
-
-
-
-
-___________DONE___________
-+ Check is admin is logged in before viewing pages
-+ Admin authentication
-   -Error handling
-   -Login
