@@ -15,6 +15,7 @@ function ElectionContextProvider({ children }) {
   const [elections, setElections] = useState([]);
   const [electionDetail, setElectionDetail] = useState({});
   const [candidatesDetail, setCandidatesDetail] = useState([]);
+  const [students, setStudents] = useState([]);
 
   const getElectionDetail = async (year) => {
     setLoading(true);
@@ -43,6 +44,7 @@ function ElectionContextProvider({ children }) {
       ]);
     });
     setLoading(false);
+    console.log("candidates", candidatesDetail);
   };
   const getElectionYear = (year) => {
     setElectionYear(year);
@@ -68,12 +70,24 @@ function ElectionContextProvider({ children }) {
     });
     setLoading(false);
   };
+  const getStudents = async (year) => {
+    setLoading(true);
+    const querySnapshot = await firestore_getDocs(
+      firestore_collection(db, year, "students", `${year}_students`)
+    );
+    querySnapshot.forEach((doc) => {
+      console.log(doc.data());
+      setStudents((students) => [...students, doc.data()]);
+    });
+    setLoading(false);
+  };
 
   useEffect(() => {
     getElections();
     if (electionYear) {
       getElectionDetail(electionYear);
       getCandidatesDetail(electionYear);
+      getStudents(electionYear);
     }
   }, [electionYear]);
 
@@ -85,6 +99,7 @@ function ElectionContextProvider({ children }) {
         electionDetail,
         elections,
         candidatesDetail,
+        students,
         loading,
       }}
     >

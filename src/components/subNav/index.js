@@ -1,7 +1,6 @@
 import { useContext } from "react";
 import { Box, List, ListItem, Link, Flex } from "@chakra-ui/react";
-import { CaretRight } from "phosphor-react";
-import { Link as RL } from "react-router-dom";
+import { NavLink as RL } from "react-router-dom";
 import { ElectionContext } from "../../context/electionContext";
 
 const SubNav = () => {
@@ -23,6 +22,7 @@ const SubNav = () => {
           color="brand.white"
           display="block"
           borderBottom="4px solid transparent"
+          className="sub-nav"
         >
           <div
             style={{
@@ -31,9 +31,7 @@ const SubNav = () => {
             }}
           >
             <span> {name}</span>
-            {/* <span style={{ marginLeft: "5px" }}>
-              <CaretRight size={16} weight="bold" />
-            </span> */}
+           
           </div>
         </Link>
       </ListItem>

@@ -9,7 +9,6 @@ export const Spinner = ({ size, color, height, background }) => {
       width="100%"
       justifyContent="center"
       alignItems="center"
-      background={background ? background : "#703bda29"}
       p="50px 0"
     >
       <SpinnerCircular

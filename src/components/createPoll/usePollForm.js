@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 import {
   db,
   storage,
@@ -15,7 +15,7 @@ const usePollForm = (
   candidateValidationRules,
   electionYear
 ) => {
-  const navigate = useNavigate();
+//   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
   const [candidateFieldErrors, setCandidateFieldErrors] = useState([]);
   const [errors, setErrors] = useState({});
@@ -65,12 +65,14 @@ const usePollForm = (
               await firestore_setDoc(docRef, uploadCandidate);
             }
           );
-          //  navigate(0);
         })
         .catch((error) => {
           console.log(error);
           console.log(error.message);
         });
+
+      //   not working, i don't know why
+      // await navigate(0);
     });
   };
 
@@ -115,6 +117,7 @@ const usePollForm = (
       setLoading(true);
       await createPoll();
       setLoading(false);
+      // navigate(0);
     } else {
       console.log(errors);
       console.log(pollValid);

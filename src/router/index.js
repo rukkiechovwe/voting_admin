@@ -24,10 +24,15 @@ const Router = ({ hasToken }) => {
             path="/elections/:electionYear/students"
             element={<StudentList />}
           />
+          <Route
+            path="/elections/:electionYear/student-detail/:studentName"
+            element={<StudentDetail />}
+          />
           <Route path="/elections/:electionYear/polls" element={<Polls />} />
           <Route path="/account" element={<Account />} />
           <Route path="/admin" element={<AdminPage />} />
-          <Route path="/student-detail" element={<StudentDetail />} />
+
+          <Route path="/login" element={<Login />} />
         </>
       ) : (
         <Route path="/login" element={<Login />} />

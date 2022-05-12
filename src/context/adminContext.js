@@ -5,6 +5,7 @@ export const AdminContext = React.createContext();
 
 function AdminContextProvider({ children }) {
   const [adminList, setAdminList] = useState([]);
+  const [hasToken, setHasToken] = useState(false);
 
   const getAdminList = async () => {
     const querySnapshot = await firestore_getDocs(
@@ -17,13 +18,17 @@ function AdminContextProvider({ children }) {
     });
     setAdminList(data);
   };
-
+  const getToken = (token) => {
+    setHasToken(token);
+  };
   useEffect(() => {
     getAdminList();
   }, []);
 
   return (
-    <AdminContext.Provider value={{ adminList }}>
+    <AdminContext.Provider
+      value={{ adminList, hasToken, setHasToken, getToken }}
+    >
       {children}
     </AdminContext.Provider>
   );

@@ -14,12 +14,14 @@ import ElectionDetail from "../../components/electionDetail";
 import { CreatePoll } from "../../components/createPoll";
 import { ElectionContext } from "../../context/electionContext";
 import { Spinner } from "../../common/Spinner";
+import CandidateCard from "../../common/candidateCard";
+import { convertDate } from "../../utils/convertTime";
 
 function Polls() {
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const { electionYear, loading, candidatesDetail } =
+  const { electionYear, loading, candidatesDetail, electionDetail } =
     useContext(ElectionContext);
-
+  const date = convertDate(`${electionDetail.startDate}`);
   return (
     <ElectionDetail>
       {loading ? (
@@ -32,7 +34,7 @@ function Polls() {
                 {electionYear} Election
               </Heading>
               <Text pt="10px" fontSize="14px">
-                Election starts on the 25th of March, 8:00am
+                Election starts on the {date} at {electionDetail.startTime}am
               </Text>
             </Box>
             <Box onClick={onOpen}>
@@ -53,13 +55,27 @@ function Polls() {
             </Box>
           </Flex>
 
-          <Candidates position="President" />
-          <Candidates position="Vice-President" />
+          {electionDetail.pollsAvailable.map((poll) => (
+            <Candidates position={`${poll} Poll`} key={poll}>
+              {candidatesDetail.map((candidate) => {
+                if (candidate.pollName === poll) {
+                  return (
+                    <CandidateCard
+                      key={candidate.name}
+                      name={candidate.name}
+                      image={candidate.imageUrl}
+                      votes={candidate.votes}
+                    />
+                  );
+                }
+              })}
+            </Candidates>
+          ))}
           <CreatePoll isOpen={isOpen} onOpen={onOpen} onClose={onClose} />
         </Box>
       ) : (
         <Text p="50px 0" textAlign="center">
-          <em>{electionYear} election details not available</em>
+          <em>{electionYear} poll details are not available</em>
         </Text>
       )}
     </ElectionDetail>

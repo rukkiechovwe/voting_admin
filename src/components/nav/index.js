@@ -6,6 +6,7 @@ import {
   Text,
   Heading,
   Link,
+  Button,
 } from "@chakra-ui/react";
 import {
   HouseSimple,
@@ -15,8 +16,10 @@ import {
   GearSix,
   Power,
 } from "phosphor-react";
-import { Link as RL } from "react-router-dom";
+import { NavLink as RL, useNavigate } from "react-router-dom";
 const Nav = () => {
+  const navigate = useNavigate();
+
   const NavListItem = ({ to, name, icon }) => {
     return (
       <ListItem>
@@ -32,12 +35,8 @@ const Nav = () => {
           py="18px"
           color="brand.white"
           display="block"
+          className="nav-link"
         >
-          {/* <ListIcon
-            w="20px"
-            h="20px"
-            as={icon}
-          /> */}
           <span
             style={{
               display: "flex",
@@ -52,6 +51,7 @@ const Nav = () => {
       </ListItem>
     );
   };
+
   return (
     <Box
       w="120px"
@@ -83,8 +83,6 @@ const Nav = () => {
                 icon={<HouseSimple size={20} weight="bold" />}
                 name="Home"
               />
-              {/* <NavListItem to="/students" icon={UsersThree} name="Students" /> */}
-              {/* <NavListItem to="/elections" icon={Ticket} name="Election" /> */}
               <NavListItem
                 to="/admin"
                 icon={<Users size={20} weight="bold" />}
@@ -95,12 +93,32 @@ const Nav = () => {
                 icon={<GearSix size={20} weight="bold" />}
                 name=" Account"
               />
-              <NavListItem
-                to="/"
-                icon={<Power size={20} weight="bold" />}
-                name=" Logout"
-              />
             </List>
+            <Button
+              px="24px"
+              py="18px"
+              color="brand.white"
+              display="flex"
+              flexDirection="column"
+              fontWeight="400"
+              background="transparent"
+              height="100%"
+              width="100%"
+              alignItems="center"
+              borderRadius="0"
+              _hover={{
+                bg: "#fff !important",
+                color: "#FF0000 !important",
+                transition: "200ms all ease",
+              }}
+              onClick={() => {
+                localStorage.clear();
+                navigate("/login");
+              }}
+            >
+              <Power size={20} weight="bold" />
+              <span>Logout</span>
+            </Button>
           </Box>
         </Box>
       </Box>

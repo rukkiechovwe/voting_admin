@@ -82,6 +82,15 @@ button:focus {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 } */
+.nav-link.active {
+  background: #fff;
+  color: #6837ca9e;
+  transition: 200ms all ease;
+}
+.sub-nav.active {
+  transition: 200ms all ease;
+  border-color: #fff;
+}
 
 @media screen and (max-width: 1270px) {
   .student_none {

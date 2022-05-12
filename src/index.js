@@ -4,11 +4,15 @@ import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter } from "react-router-dom";
+import AdminContextProvider from "./context/adminContext";
+
 
 ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
-      <App />
+      <AdminContextProvider>
+        <App />
+      </AdminContextProvider>
     </BrowserRouter>
   </React.StrictMode>,
   document.getElementById("root")
