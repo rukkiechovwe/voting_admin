@@ -7,6 +7,7 @@ import VotingOverview from "../../components/votingOverview";
 import ElectionDetail from "../../components/electionDetail";
 import { ElectionContext } from "../../context/electionContext";
 import { Spinner } from "../../common/Spinner";
+import { useLocation, useParams } from "react-router-dom";
 
 function Overview() {
   const { electionDetail, electionYear, loading } = useContext(ElectionContext);

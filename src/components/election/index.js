@@ -17,10 +17,7 @@ const Election = () => {
         }}
       >
         {loading ? (
-          <Spinner
-            background="transparent"
-            height="calc(100vh - 290px)"
-          />
+          <Spinner background="transparent" height="calc(100vh - 290px)" />
         ) : elections.length !== 0 ? (
           elections.map((e, i) => (
             <Link

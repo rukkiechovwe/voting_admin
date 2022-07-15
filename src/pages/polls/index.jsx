@@ -68,6 +68,7 @@ function Polls() {
                     />
                   );
                 }
+                return <div />;
               })}
             </Candidates>
           ))}
