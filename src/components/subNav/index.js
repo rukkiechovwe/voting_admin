@@ -31,7 +31,6 @@ const SubNav = () => {
             }}
           >
             <span> {name}</span>
-           
           </div>
         </Link>
       </ListItem>
