@@ -21,25 +21,30 @@ function StudentDetail() {
   const navigate = useNavigate();
   let params = useParams();
 
-  useEffect(async () => {
-    if (params.studentName) {
-      setLoading(true);
-      const docRef = firestore_doc(
-        db,
-        electionYear,
-        "students",
-        `${electionYear}_students`,
-        params.studentName
-      );
-      const docSnap = await firestore_getDoc(docRef);
-      if (docSnap.exists()) {
-        console.log("Document data:", docSnap.data());
-        setStudent(docSnap.data());
+  useEffect(() => {
+    async function checkParam() {
+      if (params.studentName) {
+        setLoading(true);
+        const docRef = firestore_doc(
+          db,
+          electionYear,
+          "students",
+          `${electionYear}_students`,
+          params.studentName
+        );
+        const docSnap = await firestore_getDoc(docRef);
+        if (docSnap.exists()) {
+          console.log("Document data:", docSnap.data());
+          setStudent(docSnap.data());
+        }
+        setLoading(false);
+      } else {
+        navigate(`/elections/${electionYear}/students`);
       }
-      setLoading(false);
-    } else {
-      navigate(`/elections/${electionYear}/students`);
     }
+
+    checkParam()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const StudentInfo = ({ info, value, link }) => {

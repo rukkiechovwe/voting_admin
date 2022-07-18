@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { Box, Flex, Link, Text } from "@chakra-ui/react";
+import { Box, Flex, Link } from "@chakra-ui/react";
 import { Link as RL } from "react-router-dom";
 
 import ElectionCard from "../../common/electionCard";

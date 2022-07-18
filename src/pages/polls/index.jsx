@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useMemo } from "react";
 import {
   Box,
   Flex,
@@ -22,6 +22,19 @@ function Polls() {
   const { electionYear, loading, candidatesDetail, electionDetail } =
     useContext(ElectionContext);
   const date = convertDate(`${electionDetail.startDate}`);
+
+  const getPolls = useMemo(() => {
+    // loop through candidates and find the one that matches the current poll
+    return electionDetail.pollsAvailable.reduce((acc, curr) => {
+      candidatesDetail.forEach((candidate) => {
+        if (candidate.pollName === curr && !acc.includes(candidate.pollName)) {
+          acc.push(candidate.pollName);
+        }
+      });
+      return acc;
+    }, []);
+  }, [candidatesDetail, electionDetail]);
+
   return (
     <ElectionDetail>
       {loading ? (
@@ -55,23 +68,25 @@ function Polls() {
             </Box>
           </Flex>
 
-          {electionDetail.pollsAvailable.map((poll) => (
-            <Candidates position={`${poll} Poll`} key={poll}>
-              {candidatesDetail.map((candidate) => {
-                if (candidate.pollName === poll) {
-                  return (
-                    <CandidateCard
-                      key={candidate.name}
-                      name={candidate.name}
-                      image={candidate.imageUrl}
-                      votes={candidate.votes}
-                    />
-                  );
-                }
-                return <div />;
-              })}
-            </Candidates>
-          ))}
+          {electionDetail.pollsAvailable.map(
+            (poll, index) =>
+              getPolls[index] && (
+                <Candidates position={`${getPolls[index]} Poll`} key={poll}>
+                  {candidatesDetail.map((candidate) => {
+                    if (candidate.pollName === getPolls[index]) {
+                      return (
+                        <CandidateCard
+                          key={candidate.name}
+                          name={candidate.name}
+                          image={candidate.imageUrl}
+                          votes={candidate.votes}
+                        />
+                      );
+                    }
+                  })}
+                </Candidates>
+              )
+          )}
           <CreatePoll isOpen={isOpen} onOpen={onOpen} onClose={onClose} />
         </Box>
       ) : (

@@ -1,4 +1,4 @@
-import React,{useState} from "react";
+import React from "react";
 import { User } from "phosphor-react";
 import { Text, Button } from "@chakra-ui/react";
 import { ModalComponent } from "../../common/modal";
@@ -7,7 +7,7 @@ import useAdminForm from "./useAdminForm";
 import { ValidationRules } from "./validationRules";
 
 export const CreateAdmin = ({ isOpen, onOpen, onClose }) => {
-  const { values,errors, loading, handleChange, handleSubmit } =
+  const { errors, loading, handleChange, handleSubmit } =
     useAdminForm(ValidationRules);
     
 

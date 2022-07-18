@@ -19,7 +19,6 @@ export const CreatePoll = ({ isOpen, onOpen, onClose }) => {
     candidateFieldErrors,
     loading,
     candidates,
-    values,
     handleChange,
     addCandidate,
     handleSubmit,

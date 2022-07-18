@@ -1,5 +1,5 @@
 import { Box, Flex, Heading, Text } from "@chakra-ui/react";
-import { Link as RL } from "react-router-dom";
+// import { Link as RL } from "react-router-dom";
 
 const ElectionCard = ({
   year,

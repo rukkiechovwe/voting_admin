@@ -1,5 +1,4 @@
 import { Box, Text } from "@chakra-ui/react";
-import RecentVoteCard from "../../common/recentVoteCard";
 
 const RecentVotes = () => {
   return (

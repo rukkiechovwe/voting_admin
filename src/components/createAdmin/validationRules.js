@@ -1,4 +1,4 @@
-import { validateEmail, validateText } from "../../utils/validators";
+import { validateEmail } from "../../utils/validators";
 
 export const ValidationRules = (values) => {
   let errors = {};

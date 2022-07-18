@@ -2,17 +2,13 @@ import {
   Box,
   List,
   ListItem,
-  ListIcon,
-  Text,
   Heading,
   Link,
   Button,
 } from "@chakra-ui/react";
 import {
   HouseSimple,
-  UsersThree,
   Users,
-  Ticket,
   GearSix,
   Power,
 } from "phosphor-react";

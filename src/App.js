@@ -1,4 +1,4 @@
-import { useState, useEffect, useContext } from "react";
+import { useEffect, useContext } from "react";
 
 import { useNavigate } from "react-router-dom";
 import { ChakraProvider, Flex } from "@chakra-ui/react";
@@ -22,6 +22,7 @@ function App() {
     } else {
       navigate("/login");
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

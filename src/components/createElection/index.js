@@ -17,7 +17,7 @@ import useElectionForm from "./useElectionForm";
 import { ValidationRules } from "./validationRules";
 
 export const CreateElection = ({ isOpen, onOpen, onClose }) => {
-  const { handleChange, handleSubmit, setPoll, poll, errors, values, loading } =
+  const { handleChange, handleSubmit, setPoll, poll, errors, loading } =
     useElectionForm(ValidationRules);
 
   const ErrorMessage = ({ type, mt ,mb}) => {
