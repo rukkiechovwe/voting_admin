@@ -1,14 +1,12 @@
 ___________ADMIN TODO___________
-+ Image upload size limit
++get eligible voters
++filter recent votes
++voting overview
+
 + Edit election details
 + Edit poll details
-+ Reset password
-+ Image compression
 
-___________DONE___________
-+ Get candidates
-+ Link active ui
-+ Log out
-+ Mark students as eligible
-+ Responsiveness
++ Reset password
++ Image upload size limit
++ Image compression
 

@@ -1,7 +1,9 @@
 import { Box, Flex, Img, Spacer, Text } from "@chakra-ui/react";
 import checkCircle from "../../assets/icons/checkCircle.svg";
 
-const RecentVoteCard = ({ name }) => {
+const RecentVoteCard = ({ name, time }) => {
+  // fix time
+  console.log(time);
   return (
     <Flex
       w="100%"

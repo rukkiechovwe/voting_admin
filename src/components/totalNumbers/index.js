@@ -1,9 +1,12 @@
+import React, { useContext } from "react";
 import { Box, Flex, Text, Heading } from "@chakra-ui/react";
+import { ElectionContext } from "../../context/electionContext";
 
 const TotalNumbers = () => {
+  const { students, votes } = useContext(ElectionContext);
   const Card = ({ title, number, last }) => {
     return last ? (
-      <Box w="33.333%" pl="40px" >
+      <Box w="33.333%" pl="40px">
         <Text fontSize="sm" color="brand.dark">
           {title}
         </Text>
@@ -34,9 +37,9 @@ const TotalNumbers = () => {
       mb="20px"
       boxShadow=" 0px 3px 10px rgba(200, 200, 200, 0.17)"
     >
-      <Card title="Total Students" number="0" />
-      <Card title="Total Voters" number="0" />
-      <Card title="Total Votes" number="0" last={true} />
+      <Card title="Total Students" number={students.length} />
+      <Card title="Total Eligible Voters" number="0" />
+      <Card title="Total Votes" number={votes.length} last={true} />
     </Flex>
   );
 };

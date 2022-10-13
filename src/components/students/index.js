@@ -53,7 +53,7 @@ const Students = ({ fullPage, title }) => {
                     color="#4f4f4f"
                     width=" 100%"
                     display=" contents"
-                    to={`/elections/${electionYear}/student-detail/${`${student.fname} ${student.lname}`
+                    to={`/elections/${electionYear}/student-detail/${`${student.email}`
                       .split(" ")
                       .join("_")}`}
                   >

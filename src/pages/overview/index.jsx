@@ -9,7 +9,8 @@ import { ElectionContext } from "../../context/electionContext";
 import { Spinner } from "../../common/Spinner";
 
 function Overview() {
-  const { electionDetail, electionYear, loading } = useContext(ElectionContext);
+  const { electionDetail, electionYear, loading, candidatesDetail } =
+    useContext(ElectionContext);
 
   return (
     <ElectionDetail>
@@ -36,7 +37,11 @@ function Overview() {
             }}
           >
             <TotalNumbers />
-            <VotingOverview />
+            <VotingOverview
+              electionDetail={electionDetail}
+              candidatesDetail={candidatesDetail}
+              loading={loading}
+            />
             <Students title="Recent Students" />
           </Box>
           <RecentVotes />

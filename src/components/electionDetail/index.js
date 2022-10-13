@@ -11,6 +11,7 @@ function ElectionDetail({ children }) {
     getStudents,
     getElectionDetail,
     getCandidatesDetail,
+    getvotes,
   } = useContext(ElectionContext);
   const navigate = useNavigate();
   const params = useParams();
@@ -22,6 +23,7 @@ function ElectionDetail({ children }) {
       getStudents(year);
       getElectionDetail(year);
       getCandidatesDetail(year);
+      getvotes(year);
     } else {
       navigate("/");
     }

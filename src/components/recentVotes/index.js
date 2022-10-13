@@ -1,6 +1,11 @@
+import React, { useContext } from "react";
 import { Box, Text } from "@chakra-ui/react";
+import { ElectionContext } from "../../context/electionContext";
+import RecentVoteCard from "../../common/recentVoteCard";
 
 const RecentVotes = () => {
+  const { votes } = useContext(ElectionContext);
+
   return (
     <Box
       bg="brand.white"
@@ -21,11 +26,13 @@ const RecentVotes = () => {
         <Text fontSize="1.1rem">Recent Votes</Text>
       </Box>
       <Box px="15px">
-        {/* <RecentVoteCard name=" Ufuoma Oghenechovwe" />
-        <RecentVoteCard name="Stanley Akpama" /> */}
-        <Text textAlign="center" p="30px 0">
-          <em>No votes yet</em>
-        </Text>
+        {votes && votes.length > 0 ? (
+          votes.map((vote) => <RecentVoteCard name={vote.student_name} time={vote.timeStamp} />)
+        ) : (
+          <Text textAlign="center" p="30px 0">
+            <em>No votes yet</em>
+          </Text>
+        )}
       </Box>
     </Box>
   );
