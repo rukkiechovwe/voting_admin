@@ -27,8 +27,8 @@ const RecentVotes = () => {
       </Box>
       <Box px="15px">
         {votes && votes.length > 0 ? (
-          votes.map((vote) => (
-            <RecentVoteCard name={vote.student_name} time={vote.timeStamp} />
+          votes.map((vote,key) => (
+            <RecentVoteCard name={vote.student_name} time={vote.timeStamp} key={key} />
           ))
         ) : (
           <Text textAlign="center" p="30px 0">

@@ -5,6 +5,9 @@ import {
   firestore_doc,
   firestore_getDoc,
   firestore_getDocs,
+  firestore_query,
+  firestore_orderBy,
+  firestore_limit,
 } from "../firebase";
 
 export const ElectionContext = React.createContext();
@@ -40,7 +43,7 @@ function ElectionContextProvider({ children }) {
     );
     setCandidatesDetail(querySnapshot.docs.map((doc) => doc.data()));
     setLoading(false);
-   //  console.log("candidates", candidatesDetail);
+    //  console.log("candidates", candidatesDetail);
   };
 
   const getvotes = async (year) => {
@@ -48,6 +51,12 @@ function ElectionContextProvider({ children }) {
     const querySnapshot = await firestore_getDocs(
       firestore_collection(db, year, "vote_entries", `${year}_vote_entries`)
     );
+
+    //  const q = firestore_query(
+    //    querySnapshot,
+    //    firestore_orderBy("name", "desc"),
+    //    firestore_limit(3)
+    //  );
     setVotes(querySnapshot.docs.map((doc) => doc.data()));
     setLoading(false);
     console.log("vote_entries", votes);
@@ -72,7 +81,7 @@ function ElectionContextProvider({ children }) {
         if (docSnap.exists()) {
           setElections((elections) => [...elections, docSnap.data()]);
         } else {
-         //  console.log("No such document!");
+          //  console.log("No such document!");
         }
       });
     });

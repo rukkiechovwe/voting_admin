@@ -1,6 +1,7 @@
 import React, { useContext, useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { Box, Flex, Text, Button } from "@chakra-ui/react";
+import { ArrowLeft } from "phosphor-react";
 import { FileArrowDown } from "phosphor-react";
 import MainPage from "../../components/mainPage";
 import { Spinner } from "../../common/Spinner";
@@ -34,7 +35,7 @@ function StudentDetail() {
         );
         const docSnap = await firestore_getDoc(docRef);
         if (docSnap.exists()) {
-         //  console.log("Document data:", docSnap.data());
+          //  console.log("Document data:", docSnap.data());
           setStudent(docSnap.data());
         }
         setLoading(false);
@@ -43,7 +44,7 @@ function StudentDetail() {
       }
     }
 
-    checkParam()
+    checkParam();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -87,16 +88,39 @@ function StudentDetail() {
         <Spinner />
       ) : student !== null ? (
         <Box py="25px" px="35px">
-          <Text fontSize={22} fontWeight="600">
-            <span>Student / </span>
-            <span>
-              {student.fname} {student.lname}
-            </span>
-          </Text>
-          <Text pb="20px" borderBottom="1bx sol">
-            <span>Last Checked:</span>
-            <span>Checked By:</span>
-          </Text>
+          <Flex
+            w="fit-content"
+            pb="10px"
+            cursor="pointer"
+            onClick={() => {
+              navigate(`/elections/${electionYear}/students`);
+            }}
+          >
+            <ArrowLeft
+              size={22}
+              style={{
+                color: "#fff",
+                background: "#333333",
+                padding: "3px",
+                borderRadius: "4px",
+              }}
+            />
+            <Text marginLeft={1} color="brand.black">
+              Back
+            </Text>
+          </Flex>
+          <Box marginTop="6px">
+            <Text fontSize={22} fontWeight="600">
+              <span>Student / </span>
+              <span>
+                {student.fname} {student.lname}
+              </span>
+            </Text>
+            <Text pb="20px" borderBottom="1bx sol">
+              <span>Last Checked:</span>
+              <span>Checked By:</span>
+            </Text>
+          </Box>
 
           <Flex
             bg="brand.white"

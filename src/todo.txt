@@ -8,6 +8,7 @@ ___________ADMIN TODO___________
 
 ___________BUGS___________
 + Display image validation err
++ Add back icon on innerpages
 
 ___________DONE___________
 - Image upload size limit

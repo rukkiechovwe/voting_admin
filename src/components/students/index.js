@@ -1,11 +1,12 @@
 import React, { useContext } from "react";
 import { Table, Thead, Tbody, Tr, Td, Box, Text, Link } from "@chakra-ui/react";
 import { Spinner } from "../../common/Spinner";
-import { Link as RL } from "react-router-dom";
+import { Link as RL, useNavigate } from "react-router-dom";
 import TableHead from "../../common/tableHead";
 import { ElectionContext } from "../../context/electionContext";
 
 const Students = ({ fullPage, title }) => {
+  const navigate = useNavigate();
   const { electionYear, loading, students } = useContext(ElectionContext);
   return (
     <>
@@ -45,32 +46,30 @@ const Students = ({ fullPage, title }) => {
                     background: " #c8c8c824",
                     borderRadius: "10px",
                     transition: "200ms all ease",
+                    cursor: "pointer",
                   }}
                   key={student.email}
+                  onClick={() => {
+                    navigate(
+                      `/elections/${electionYear}/student-detail/${`${student.email}`
+                        .split(" ")
+                        .join("_")}`
+                    );
+                  }}
                 >
-                  <Link
-                    as={RL}
-                    color="#4f4f4f"
-                    width=" 100%"
-                    display=" contents"
-                    to={`/elections/${electionYear}/student-detail/${`${student.email}`
-                      .split(" ")
-                      .join("_")}`}
-                  >
-                    <Td borderBottom="none">
-                      {student.fname} {student.lname}
-                    </Td>
-                    <Td borderBottom="none">{student.matNo}</Td>
-                    <Td borderBottom="none" sx={{ wordWrap: " anywhere" }}>
-                      {student.email}
-                    </Td>
-                    <Td borderBottom="none" className="student_none">
-                      {student.level}
-                    </Td>
-                    <Td borderBottom="none" className="student_none">
-                      {student.eligible ? "Yes" : "No"}
-                    </Td>
-                  </Link>
+                  <Td borderBottom="none">
+                    {student.fname} {student.lname}
+                  </Td>
+                  <Td borderBottom="none">{student.matNo}</Td>
+                  <Td borderBottom="none" sx={{ wordWrap: " anywhere" }}>
+                    {student.email}
+                  </Td>
+                  <Td borderBottom="none" className="student_none">
+                    {student.level}
+                  </Td>
+                  <Td borderBottom="none" className="student_none">
+                    {student.eligible ? "Yes" : "No"}
+                  </Td>
                 </Tr>
               ))}
               {/* <Tr position="relative">

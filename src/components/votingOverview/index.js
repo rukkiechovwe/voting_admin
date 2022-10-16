@@ -90,12 +90,12 @@ const VotingOverview = () => {
             // </Candidates>
           )
       )} */}
-      <Card title="President" />
+      {/* <Card title="President" />
       <Card title="Vice-President" />
-      <Card title="Secretary" />
-      {/* <Text width="100%" textAlign="center" p="30px 0">
+      <Card title="Secretary" /> */}
+      <Text width="100%" textAlign="center" p="30px 0">
         <em>Voting is yet to begin</em>
-      </Text> */}
+      </Text>
     </Flex>
   );
 };

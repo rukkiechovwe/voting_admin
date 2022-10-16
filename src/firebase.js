@@ -14,6 +14,9 @@ import {
   getDocs,
   updateDoc,
   arrayUnion,
+  query,
+  orderBy,
+  limit,
 } from "firebase/firestore";
 
 import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
@@ -57,3 +60,6 @@ export const firestore_getDocs = getDocs;
 export const firestore_ref = ref;
 export const firestore_uploadBytes = uploadBytes;
 export const firestore_getDownloadURL = getDownloadURL;
+export const firestore_query = query;
+export const firestore_orderBy = orderBy;
+export const firestore_limit = limit;

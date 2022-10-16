@@ -18,6 +18,10 @@ function AdminContextProvider({ children }) {
     });
     setAdminList(data);
   };
+
+  //   get admin that is logged in
+  const getAdminUser = () => {};
+
   const getToken = (token) => {
     setHasToken(token);
   };

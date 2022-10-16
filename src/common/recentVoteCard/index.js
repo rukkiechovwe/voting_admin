@@ -1,10 +1,16 @@
 import { Box, Flex, Img, Spacer, Text } from "@chakra-ui/react";
+import { useEffect, useState } from "react";
 import checkCircle from "../../assets/icons/checkCircle.svg";
+import { convertDate, convertTime } from "../../utils/convertTime";
 
 const RecentVoteCard = ({ name, time }) => {
-  // fix time
-//   firebase timestamp is showing as seconds and nanoseconds...convert to normal date
-//   console.log(time);
+  const [convertedDate, setConvertedDate] = useState("");
+  const [convertedTime, setConvertedTime] = useState("");
+  useEffect(() => {
+    const newTime = new Date(time.seconds * 1000);
+    setConvertedDate(convertDate(newTime));
+    setConvertedTime(convertTime(newTime));
+  }, [time]);
 
   return (
     <Flex
@@ -18,7 +24,9 @@ const RecentVoteCard = ({ name, time }) => {
       <Flex w="100%" align="center" pl="15px">
         <Box>
           <Text fontSize="14px">{name}</Text>
-          <Text fontSize="12px">Just now</Text>
+          <Text fontSize="11px">
+            {convertedDate} {convertedTime}
+          </Text>
         </Box>
         <Spacer />
         <Text
