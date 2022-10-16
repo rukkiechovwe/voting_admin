@@ -7,7 +7,6 @@ import {
   firestore_getDocs,
   firestore_query,
   firestore_orderBy,
-  firestore_limit,
 } from "../firebase";
 
 export const ElectionContext = React.createContext();
@@ -48,16 +47,13 @@ function ElectionContextProvider({ children }) {
 
   const getvotes = async (year) => {
     setLoading(true);
-    const querySnapshot = await firestore_getDocs(
-      firestore_collection(db, year, "vote_entries", `${year}_vote_entries`)
+    const query = firestore_query(
+      firestore_collection(db, year, "vote_entries", `${year}_vote_entries`),
+      firestore_orderBy("timeStamp", "desc")
     );
 
-    //  const q = firestore_query(
-    //    querySnapshot,
-    //    firestore_orderBy("name", "desc"),
-    //    firestore_limit(3)
-    //  );
-    setVotes(querySnapshot.docs.map((doc) => doc.data()));
+    const snapshot = await firestore_getDocs(query);
+    setVotes(snapshot.docs.map((doc) => doc.data()));
     setLoading(false);
     console.log("vote_entries", votes);
   };

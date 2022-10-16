@@ -1,5 +1,4 @@
 ___________ADMIN TODO___________
-+ filter recent votes
 + voting overview
 
 + Edit election details
@@ -8,11 +7,14 @@ ___________ADMIN TODO___________
 
 ___________BUGS___________
 + Display image validation err
-+ Add back icon on innerpages
 
 ___________DONE___________
 - Image upload size limit
 - Image upload type validation
 - get eligible voters
+- filter recent votes
+- Add back icon on innerpages
+
+
 
 
