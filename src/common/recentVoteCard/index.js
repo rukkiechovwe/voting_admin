@@ -3,7 +3,9 @@ import checkCircle from "../../assets/icons/checkCircle.svg";
 
 const RecentVoteCard = ({ name, time }) => {
   // fix time
-  console.log(time);
+//   firebase timestamp is showing as seconds and nanoseconds...convert to normal date
+//   console.log(time);
+
   return (
     <Flex
       w="100%"

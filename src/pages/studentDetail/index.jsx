@@ -34,7 +34,7 @@ function StudentDetail() {
         );
         const docSnap = await firestore_getDoc(docRef);
         if (docSnap.exists()) {
-          console.log("Document data:", docSnap.data());
+         //  console.log("Document data:", docSnap.data());
           setStudent(docSnap.data());
         }
         setLoading(false);

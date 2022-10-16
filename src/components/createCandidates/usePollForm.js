@@ -39,7 +39,7 @@ const usePollForm = (validationRules, candidateValidationRules) => {
         .then((snapshot) => {
           firestore_getDownloadURL(firestore_ref(storage, storageRef)).then(
             (url) => {
-              console.log(url);
+            //   console.log(url);
               candidates[index].image = url;
               setCandidates([...candidates]);
             }
@@ -47,21 +47,21 @@ const usePollForm = (validationRules, candidateValidationRules) => {
         })
         .catch((error) => {
           console.log(error);
-          console.log(error.message);
+         //  console.log(error.message);
         });
     });
-    console.log(candidates);
+   //  console.log(candidates);
     return candidates;
   };
   const createPoll = async () => {
     await uploadImage();
     // upload poll with candidate image url
-    console.log(candidates);
+   //  console.log(candidates);
     const docRef = await firestore_addDoc(firestore_collection(db, "poll"), {
       pollName: values.pollName,
       candidates: candidates,
     });
-    console.log("Document written with ID: ", docRef.id);
+   //  console.log("Document written with ID: ", docRef.id);
   };
 
   /// index is -1 for non-candidate fields
@@ -82,7 +82,7 @@ const usePollForm = (validationRules, candidateValidationRules) => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log(values);
+   //  console.log(values);
     setErrors({});
     setCandidateFieldErrors([]);
     let pollValid = true;

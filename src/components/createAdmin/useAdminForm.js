@@ -28,14 +28,14 @@ const useAdminForm = (validationRules) => {
             role: 2,
           }
         );
-        console.log("Document written with ID: ", docRef.id);
+      //   console.log("Document written with ID: ", docRef.id);
         console.log(user);
         navigate(0);
       })
       .catch((error) => {
         console.log(error);
-        console.log(error.message);
-        console.error("Error adding document: ", e);
+      //   console.log(error.message);
+      //   console.error("Error adding document: ", e);
       });
   };
 

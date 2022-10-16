@@ -13,13 +13,13 @@ const useLoginForm = (validationRules) => {
     signInUser(auth, e, p)
       .then((userCredential) => {
         const user = userCredential.user;
-        console.log(user);
+      //   console.log(user);
         localStorage.setItem(TOKEN, user.uid);
         navigate("/");
       })
       .catch((error) => {
         console.log(error);
-        console.log(error.message);
+      //   console.log(error.message);
         setLoading(false);
         setErrors({ authentication: error.message });
       });

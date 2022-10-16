@@ -1,12 +1,17 @@
 ___________ADMIN TODO___________
-+get eligible voters
-+filter recent votes
-+voting overview
++ filter recent votes
++ voting overview
 
 + Edit election details
 + Edit poll details
++ web sockets
 
-+ Reset password
-+ Image upload size limit
-+ Image compression
+___________BUGS___________
++ Display image validation err
+
+___________DONE___________
+- Image upload size limit
+- Image upload type validation
+- get eligible voters
+
 

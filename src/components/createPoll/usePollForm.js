@@ -15,7 +15,7 @@ const usePollForm = (
   candidateValidationRules,
   electionYear
 ) => {
-//   const navigate = useNavigate();
+  //   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
   const [candidateFieldErrors, setCandidateFieldErrors] = useState([]);
   const [errors, setErrors] = useState({});
@@ -68,7 +68,7 @@ const usePollForm = (
         })
         .catch((error) => {
           console.log(error);
-          console.log(error.message);
+         //  console.log(error.message);
         });
 
       //   not working, i don't know why
@@ -86,9 +86,49 @@ const usePollForm = (
       setCandidates([...candidates]);
     }
   };
+
   const handleImage = (event, index) => {
     event.preventDefault();
-    candidates[index].image = event.target.files[0];
+    const file = event.target.files[0];
+    const fileSize = Math.round(file / 1024);
+    let isSize = false;
+    let isType = false;
+
+   //  console.log(file);
+
+    //  check file size
+    if (fileSize >= 4096) {
+      setCandidateFieldErrors(
+        candidates.map((candidate) => {
+          return (candidate.image =
+            "Image too Big, please select an image less than 4mb");
+        })
+      );
+    } else {
+      isSize = true;
+    }
+
+    //  check file type
+    if (
+      file.type === "image/jpeg" ||
+      file.type === "image/jpg" ||
+      file.type === "image/png"
+    ) {
+      isType = true;
+    } else {
+      setCandidateFieldErrors(
+        candidates.map((candidate) => {
+          return (candidate.image =
+            "Image type not supported, please select a jpg, jpeg or png image");
+        })
+      );
+    }
+
+    //  if the file size and type conditions are met, upload the file
+    if (isSize && isType) {
+      candidates[index].image = file;
+    }
+
     setCandidates([...candidates]);
   };
 
@@ -120,8 +160,8 @@ const usePollForm = (
       // navigate(0);
     } else {
       console.log(errors);
-      console.log(pollValid);
-      console.log(candidatesValid);
+      // console.log(pollValid);
+      // console.log(candidatesValid);
     }
   };
 

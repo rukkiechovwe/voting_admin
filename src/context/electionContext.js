@@ -24,12 +24,12 @@ function ElectionContextProvider({ children }) {
     const docSnap = await firestore_getDoc(docRef);
 
     if (docSnap.exists()) {
-      console.log("Document data:", docSnap.data());
+      // console.log("Document data:", docSnap.data());
       setElectionDetail(docSnap.data());
       setLoading(false);
     } else {
       setLoading(false);
-      console.log("No such document!");
+      // console.log("No such document!");
     }
   };
 
@@ -40,7 +40,7 @@ function ElectionContextProvider({ children }) {
     );
     setCandidatesDetail(querySnapshot.docs.map((doc) => doc.data()));
     setLoading(false);
-    console.log("candidates", candidatesDetail);
+   //  console.log("candidates", candidatesDetail);
   };
 
   const getvotes = async (year) => {
@@ -72,7 +72,7 @@ function ElectionContextProvider({ children }) {
         if (docSnap.exists()) {
           setElections((elections) => [...elections, docSnap.data()]);
         } else {
-          console.log("No such document!");
+         //  console.log("No such document!");
         }
       });
     });
