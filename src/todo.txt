@@ -1,12 +1,12 @@
 ___________ADMIN TODO___________
 + voting overview
-+ Edit election details
 + Edit poll details
 + web sockets
-+validate student email on voters site
-+force reload voter site after voting/use realtime uodate to update "hasVoted" field
+
 ___________BUGS___________
 + Display image validation err
++ Edit election details
+
 
 ___________DONE___________
 - Image upload size limit
